@@ -4,7 +4,6 @@ import { FaLocationArrow } from "react-icons/fa6";
 import { projects } from "@/data";
 import { PinContainer } from "./ui/Pin";
 import { motion } from "framer-motion";
-import { Images } from "lucide-react";
 
 const RecentProjects = () => {
   return (

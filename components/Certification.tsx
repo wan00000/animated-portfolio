@@ -1,8 +1,6 @@
 "use client"
 
 import { certification } from "@/data"
-import { motion } from "framer-motion"
-import { Award } from "lucide-react"
 import { HoverEffect } from "@/components/ui/hover-card-effect"
 import { useState } from "react"
 

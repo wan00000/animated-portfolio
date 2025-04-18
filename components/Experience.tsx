@@ -1,6 +1,5 @@
 "use client"
 import { workExperience } from "@/data"
-import { CardSpotlight } from "@/components/ui/card-spotlight"
 import { Badge } from "@/components/ui/badge"
 import { CalendarDays, Building2 } from "lucide-react"
 import { WobbleCard } from "./ui/wobble-card"

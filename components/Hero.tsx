@@ -2,7 +2,6 @@ import { FaLocationArrow } from "react-icons/fa6"
 import { gridItems } from "@/data"
 
 import MagicButton from "./MagicButton"
-import { Spotlight } from "./ui/Spotlight"
 import { TextGenerateEffect } from "./ui/TextGenerateEffect"
 import { BackgroundGradient } from "./ui/background-gradient"
 import { LampContainer } from "./ui/lamp"
