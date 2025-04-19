@@ -1,10 +1,37 @@
+import { link } from "fs";
+
 export const navItems = [
-  { name: "Home", link: "#home" },
-  { name: "Education", link: "#education" },
-  { name: "Certification", link: "#certification" },
-  { name: "Project", link: "#project" },
-  { name: "Experience", link: "#experience" },
-  { name: "Contact", link: "#contact" },
+  { 
+    name: "Home", 
+    link: "#home",
+    icon: "/home.png",
+
+  },
+  { 
+    name: "Education", 
+    link: "#education",
+    icon: "/education.png",
+  },
+  { 
+    name: "Certification", 
+    link: "#certification",
+    icon: "/certification.png", 
+  },
+  { 
+    name: "Project", 
+    link: "#project",
+    icon: "/project.png",
+  },
+  { 
+    name: "Experience", 
+    link: "#experience",
+    icon: "/experience.png",
+  },
+  { 
+    name: "Contact", 
+    link: "#contact",
+    icon: "/contact.png",
+  },
 ];
 
 export const certification = [
@@ -182,7 +209,7 @@ export const projects = [
     iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/appwrite.png", "/c.svg"],
     link: "github.com/wan00000/e-hailing-app",
   },
-    {
+  {
     id: 3,
     title: "To-Do List App with AWS as the Backend",
     des: "A web application that allows users to create, manage, and track their tasks using AWS services for backend functionality.",
@@ -288,10 +315,14 @@ export const workExperience = [
 export const socialMedia = [
   {
     id: 1,
+    name: "GitHub",
+    link: "https://github.com/wan00000",
     img: "/git.svg",
   },
   {
     id: 2,
+    name: "LinkedIn",
+    link: "https://www.linkedin.com/in/izwan-husainy-mohamad-b363a9116/",
     img: "/link.svg",
   },
 ];

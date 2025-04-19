@@ -52,7 +52,7 @@ export const PinContainer = ({
   // For mobile, use a simpler transform with less rotation
   useEffect(() => {
     if (isMobile) {
-      setTransform("translate(-50%,-50%) rotateX(15deg) scale(0.95)")
+      setTransform("translate(-50%,-50%) rotateX(10deg) scale(0.95)")
     } else {
       setTransform("translate(-50%,-50%) rotateX(0deg) scale(1)")
     }
@@ -60,24 +60,28 @@ export const PinContainer = ({
 
   return (
     <div
-      className={cn("relative group/pin z-50 cursor-pointer", isMobile ? "touch-manipulation" : "", containerClassName)}
+      className={cn(
+        "relative mt-10 group/pin z-50 cursor-pointer", 
+        isMobile ? "touch-manipulation w-full max-w-sm mx-auto" : "", 
+        containerClassName
+      )}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >
       <div
         style={{
           perspective: "1000px",
-          transform: isMobile ? "rotateX(50deg) translateZ(0deg)" : "rotateX(70deg) translateZ(0deg)",
+          transform: isMobile ? "rotateX(30deg) translateZ(0deg)" : "rotateX(70deg) translateZ(0deg)",
         }}
-        className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
+        className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2 w-full"
       >
         <div
           style={{
             transform: transform,
           }}
-          className="absolute left-1/2 p-4 top-1/2 flex justify-start items-start rounded-2xl shadow-[0_8px_16px_rgb(0_0_0/0.4)] border border-white/[0.1] group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden"
+          className="absolute left-1/2 p-4 top-1/2 flex justify-start items-start rounded-2xl shadow-[0_8px_16px_rgb(0_0_0/0.4)] border border-white/[0.1] group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden w-full max-w-xs sm:max-w-sm"
         >
-          <div className={cn("relative z-50", className)}>
+          <div className={cn("relative z-50 w-full", className)}>
             {/* Image carousel */}
             {images && images.length > 0 && (
               <div className="absolute top-0 left-0 w-full h-full -z-10">
@@ -120,7 +124,7 @@ export const PinPerspective = ({ title, href }: { title?: string; href?: string 
     <motion.div
       className={cn(
         "pointer-events-none w-full h-80 flex items-center justify-center z-[60] transition duration-500",
-        isMobile ? "opacity-100" : "opacity-0 group-hover/pin:opacity-100",
+        isMobile ? "opacity-100 h-72" : "opacity-0 group-hover/pin:opacity-100",
       )}
     >
       <div className="w-full h-full -mt-7 flex-none inset-0">
@@ -130,9 +134,9 @@ export const PinPerspective = ({ title, href }: { title?: string; href?: string 
               href={href.startsWith("http") ? href : `https://${href}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-4 ring-1 ring-white/10 pointer-events-auto"
+              className="relative flex space-x-2 items-center z-10 rounded-full bg-zinc-950 py-0.5 px-3 sm:px-4 ring-1 ring-white/10 pointer-events-auto"
             >
-              <span className="relative z-20 text-white text-xs font-bold inline-block py-0.5 truncate max-w-[120px] xs:max-w-[150px] sm:max-w-[200px]">
+              <span className="relative z-20 text-white text-xs font-bold inline-block py-0.5 truncate max-w-[100px] xs:max-w-[140px] sm:max-w-[180px]">
                 {displayTitle}
               </span>
               <ExternalLink className="w-3 h-3 text-white" />
@@ -144,7 +148,7 @@ export const PinPerspective = ({ title, href }: { title?: string; href?: string 
         <div
           style={{
             perspective: "1000px",
-            transform: isMobile ? "rotateX(50deg) translateZ(0)" : "rotateX(70deg) translateZ(0)",
+            transform: isMobile ? "rotateX(30deg) translateZ(0)" : "rotateX(70deg) translateZ(0)",
           }}
           className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
         >
