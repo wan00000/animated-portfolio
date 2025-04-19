@@ -4,16 +4,21 @@ import MagicButton from "./MagicButton"
 import { TextGenerateEffect } from "./ui/TextGenerateEffect"
 import { BackgroundGradient } from "./ui/background-gradient"
 import { LampContainer } from "./ui/lamp-effect"
+import { useMobile } from "@/hooks/use-mobile"
 
 const Hero = () => {
+  const isMobile = useMobile()
+  
   return (
     <section id="home" className="relative">
       {/* Lamp Container as background */}
-      <div className="absolute inset-0 w-full overflow-hidden">
-        <LampContainer className="min-h-[50vh] md:min-h-[40vh] lg:min-h-[50vh]">
-          {/* Empty content for the lamp effect */}
-        </LampContainer>
-      </div>
+      {!isMobile && (
+        <div className="absolute inset-0 w-full overflow-hidden">
+          <LampContainer className="min-h-30vh md:min-h-[40vh] lg:min-h-[50vh]">
+            {/* Empty content for the lamp effect */}
+          </LampContainer>
+        </div>
+      )}
       
       {/* Main content container */}
       <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 md:pt-16">
