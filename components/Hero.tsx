@@ -10,7 +10,7 @@ const Hero = () => {
     <section id="home" className="relative">
       {/* Lamp Container as background */}
       <div className="absolute inset-0 w-full overflow-hidden">
-        <LampContainer className="min-h-[30vh] md:min-h-[40vh] lg:min-h-[50vh]">
+        <LampContainer className="min-h-[50vh] md:min-h-[40vh] lg:min-h-[50vh]">
           {/* Empty content for the lamp effect */}
         </LampContainer>
       </div>
