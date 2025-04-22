@@ -41,7 +41,7 @@ export const certification = [
     desc: "Amazon Web Services Training & Certification",
     img: "/aws-certified-cloud-practitioner.png",
     issueDate: "04-08-23",
-    link: "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+    link: "https://www.credly.com/badges/866798ca-52b0-439f-98ac-1fa070396c99/public_url",
     className: "md:col-span-2 md:row-span-2",
   },
   {
@@ -59,7 +59,7 @@ export const certification = [
     desc: "Amazon Web Services Training & Certification",
     img: "/aws-educate-getting-started-with-storage.png",
     issueDate: "12-02-24",
-    link: "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+    link: "https://www.credly.com/badges/4256841b-9b56-403b-af41-b40d9b0cd865/public_url",
     className: "md:col-span-2 md:row-span-2",
   },
   {
@@ -68,7 +68,7 @@ export const certification = [
     desc: "Amazon Web Services Training & Certification",
     img: "aws-educate-getting-started-with-compute.png",
     issueDate: "12-03-24",
-    link: "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+    link: "https://www.credly.com/badges/97ad28ef-6714-4f0c-863a-433bee84b54f/public_url",
     className: "md:col-span-2 md:row-span-2",
   },
   {
@@ -77,7 +77,7 @@ export const certification = [
     desc: "Amazon Web Services Training & Certification",
     img: "/aws-educate-getting-started-with-networking.png",
     issueDate: "01-20-25",
-    link: "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+    link: "https://www.credly.com/badges/bedd49ec-2d1f-4c7d-8f42-a8e01fe8cf70/public_url",
     className: "md:col-span-2 md:row-span-2",
   },
   {
@@ -86,7 +86,7 @@ export const certification = [
     desc: "Amazon Web Services Training & Certification",
     img: "/aws-educate-getting-started-with-databases.png",
     issueDate: "01-23-25",
-    link: "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+    link: "https://www.credly.com/badges/f3f5a720-d0a2-410f-a524-eb9ccc9c632b/public_url",
     className: "md:col-span-2 md:row-span-2",
   },
   {
@@ -95,7 +95,7 @@ export const certification = [
     desc: "Amazon Web Services Training & Certification",
     img: "/aws-educate-getting-started-with-security.png",
     issueDate: "01-23-25",
-    link: "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+    link: "https://www.credly.com/badges/06c08efb-3e91-4db0-b544-e7c57863330c/public_url",
     className: "md:col-span-2 md:row-span-2",
   },
   {
@@ -104,7 +104,7 @@ export const certification = [
     desc: "Amazon Web Services Training & Certification",
     img: "/aws-educate-getting-started-with-serverless.png",
     issueDate: "01-23-25",
-    link: "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+    link: "https://www.credly.com/badges/3af86aca-5a19-4ab9-a94a-732e32c9a02e/public_url",
     className: "md:col-span-2 md:row-span-2",
   },
   {
@@ -113,7 +113,7 @@ export const certification = [
     desc: "Amazon Web Services Training & Certification",
     img: "/aws-educate-introduction-to-cloud-101.png",
     issueDate: "01-23-25",
-    link: "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+    link: "https://www.credly.com/badges/4211e927-96d0-4dd9-b640-680b8011e906/public_url",
     className: "md:col-span-2 md:row-span-2",
   },
 ];
