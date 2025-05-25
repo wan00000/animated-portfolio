@@ -1,0 +1,7 @@
+{
+    "name": "animated-portfolio",
+    "main": "app/page.tsx",
+    "compatibility_date": "2025-05-04",
+    "compatibility_flags": ["nodejs_compat"],
+    "assets": {"directory": "public", "binding": ["PUBLIC"]}
+  }

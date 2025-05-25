@@ -16,7 +16,7 @@ const Footer = () => {
           Hit me up <span className="text-purple">on</span> my social media!!!
         </h1>
         <p className="text-white-200 mt-4 sm:mt-6 md:mt-10 mb-5 text-center text-sm sm:text-base max-w-[90%] sm:max-w-[80%] md:max-w-[70%]">
-          I am always open for interview. Let&apos;s set up and discuss
+          I&apos;m currently seeking new opportunities as a Software Developer.
         </p>
         <a href="mailto:izwanhusainy02@gmail.com">
           <MagicButton title="Email Me" icon={<FaLocationArrow />} position="right" />

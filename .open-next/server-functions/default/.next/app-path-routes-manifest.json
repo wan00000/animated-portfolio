@@ -1,0 +1,6 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/sentry-example-api/route": "/api/sentry-example-api",
+  "/page": "/",
+  "/sentry-example-page/page": "/sentry-example-page"
+}
