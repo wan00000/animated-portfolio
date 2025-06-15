@@ -13,13 +13,13 @@ const Footer = () => {
 
       <div className="flex flex-col items-center relative z-10">
         <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-[90%] sm:max-w-[80%] lg:max-w-[45vw]">
-          Hit me up <span className="text-purple">on</span> my social media!!!
+          Eagerly embracing all <span className="text-purple">new challenges</span> ahead
         </h1>
         <p className="text-white-200 mt-4 sm:mt-6 md:mt-10 mb-5 text-center text-sm sm:text-base max-w-[90%] sm:max-w-[80%] md:max-w-[70%]">
-          I&apos;m currently seeking new opportunities as a Software Developer.
+          I&apos;m currently seeking new opportunities as a Software Engineer.
         </p>
         <a href="mailto:izwanhusainy02@gmail.com">
-          <MagicButton title="Email Me" icon={<FaLocationArrow />} position="right" />
+          <MagicButton title="Email" icon={<FaLocationArrow />} position="right" />
         </a>
       </div>
 

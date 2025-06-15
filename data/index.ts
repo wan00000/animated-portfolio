@@ -126,7 +126,7 @@ export const gridItems = [
     // className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     // imgClassName: "h-full w-75vh",
     titleClassName: "justify-end",
-    img: "/profile-pic.png",
+    img: "/pixar-style.png",
     spareImg: "",
   },
   // {
@@ -217,14 +217,14 @@ export const projects = [
     iconLists: ["/amplify.png", "/cognito.png", "/vpc.png", "/rds.png", "/ts.svg"],
     link: "github.com/wan00000/to-do-list-app",
   },
-  {
-    id: 4,
-    title: "AI Image Generator",
-    des: "A web application that utilizes OpenAI's DALL-E API to generate images based on user prompts.",
-    img: ["/p4-1.png", "/notFound.jpg", "/notFound.jpg"],
-    iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/chatgpt.png", "/html.png"],
-    link: "github.com/wan00000/AI-Image-Generator",
-  },
+  // {
+  //   id: 4,
+  //   title: "AI Image Generator",
+  //   des: "A web application that utilizes OpenAI's DALL-E API to generate images based on user prompts.",
+  //   img: ["/p4-1.png", "/notFound.jpg", "/notFound.jpg"],
+  //   iconLists: ["/re.svg", "/tail.svg", "/ts.svg", "/chatgpt.png", "/html.png"],
+  //   link: "github.com/wan00000/AI-Image-Generator",
+  // },
   // {
   //   id: 3,
   //   title: "AI Image SaaS - Canva Application",

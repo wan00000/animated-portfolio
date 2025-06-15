@@ -28,7 +28,7 @@ const Hero = () => {
             <div className="space-y-4 md:space-y-8">
               {/* Name with text generation effect */}
               <div className="space-y-1 md:space-y-2">
-                <div className="text-sm md:text-base font-medium text-white/70">Hello, I&apos;m</div>
+                {/* <div className="text-sm md:text-base font-medium text-white/70">Hello, I&apos;m</div> */}
                 <TextGenerateEffect
                   words="IZWAN HUSAINY BIN MOHAMAD"
                   className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
@@ -65,7 +65,7 @@ const Hero = () => {
                 <BackgroundGradient className="rounded-2xl p-1 w-full">
                   <div className="relative bg-black rounded-xl overflow-hidden aspect-[3/4] w-full">
                     <img
-                      src="/profile-pic.png"
+                      src="/pixar-style.png"
                       alt="Izwan Husainy Profile Picture"
                       className="w-full h-full object-cover object-center"
                     />
