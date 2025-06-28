@@ -126,7 +126,7 @@ export const gridItems = [
     // className: "lg:col-span-3 md:col-span-6 md:row-span-4 lg:min-h-[60vh]",
     // imgClassName: "h-full w-75vh",
     titleClassName: "justify-end",
-    img: "/profile-pic.png",
+    img: "/pixar style.png",
     spareImg: "",
   },
   // {

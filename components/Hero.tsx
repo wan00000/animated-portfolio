@@ -65,7 +65,7 @@ const Hero = () => {
                 <BackgroundGradient className="rounded-2xl p-1 w-full">
                   <div className="relative bg-black rounded-xl overflow-hidden aspect-[3/4] w-full">
                     <img
-                      src="/profile-pic.png"
+                      src="/pixar style.png"
                       alt="Izwan Husainy Profile Picture"
                       className="w-full h-full object-cover object-center"
                     />

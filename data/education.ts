@@ -30,29 +30,4 @@ export const educationItems: EducationItem[] = [
     courseWork: ["Biology", "Chemistry", "Mathematics", "Physics", "English", "Agriculture"],
     img: "/upm.png",
   },
-
-  // {
-  //   id: 22,
-  //   title: "Sales Assistant",
-  //   institution: "CelcomDigi Berhad",
-  //   description: "Provide exceptional customer service by resolving issues related to Digi mobile and fibre plans.",
-  //   period: "Sep 2023 - Oct 2023",
-  //   skills: ["Enhanced ability to promote and sell products effectively", "Gained expertise in resolving customer issues", "Developed skills to address technical queries swiftly"],
-  //   className: "md:col-span-1",
-  //   img: "/images/education/design.jpg", // Replace with your actual image path
-  //   imgClassName: "object-cover",
-  //   titleClassName: "text-white",
-  // },
-  // {
-  //   id: 33,
-  //   title: "Web Designer",
-  //   institution: " Soloreen Ventures Enterprises",
-  //   description: "Create visually appealing, user-friendly, and functional designs for websites and web applications.",
-  //   period: "Sep 2024 - Mar 2025",
-  //   skills: ["Web Design", "Figma", "UI Design", "UX Design", "Creative Work", "Sprint Design"],
-  //   className: "md:col-span-1",
-  //   img: "/images/education/bootcamp.jpg", // Replace with your actual image path
-  //   imgClassName: "object-cover",
-  //   titleClassName: "text-white",
-  // },
 ]

@@ -1,0 +1,242 @@
+{
+    "navItems": [
+        { 
+            "name": "Home", 
+            "link": "#home",
+            "icon": "/home.png"
+        },
+        {
+            "name": "Education", 
+            "link": "#education",
+            "icon": "/education.png"
+        },
+        {
+            "name": "Certification", 
+            "link": "#certification",
+            "icon": "/certification.png"
+        },
+        {
+            "name": "Project", 
+            "link": "#project",
+            "icon": "/project.png"
+        },
+        {
+            "name": "Experience", 
+            "link": "#experience",
+            "icon": "/experience.png"
+        },
+        {
+            "name": "Contact", 
+            "link": "#contact",
+            "icon": "/contact.png"
+        }
+    ],
+    "certification": [
+        {
+            "id": 1,
+            "title": "AWS Certified Cloud Practitioner",
+            "desc": "Amazon Web Services Training & Certification",
+            "img": "/aws-certified-cloud-practitioner.png",
+            "issueDate": "04-08-23",
+            "link": "https://www.credly.com/badges/866798ca-52b0-439f-98ac-1fa070396c99/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        },
+        {
+            "id": 2,
+            "title": "Exploring Internet of Things with Cisco Packet Tracer",
+            "desc": "Cisco Networking Academy",
+            "img": "/exploring-iot-with-cisco-packet-tracer.png",
+            "issueDate": "12-13-24",
+            "link": "https://www.credly.com/badges/0f2b4c3d-1a5e-4f7b-8a6c-9d0e1c5f3a2b/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        },
+        {
+            "id": 3,
+            "title": "AWS Educate Getting Started with Storage",
+            "desc": "Amazon Web Services Training & Certification",
+            "img": "/aws-educate-getting-started-with-storage.png",
+            "issueDate": "12-02-24",
+            "link": "https://www.credly.com/badges/4256841b-9b56-403b-af41-b40d9b0cd865/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        },
+        {
+            "id": 4,
+            "title": "AWS Educate Getting Started with Compute",
+            "desc": "Amazon Web Services Training & Certification",
+            "img": "aws-educate-getting-started-with-compute.png",
+            "issueDate": "12-03-24",
+            "link": "https://www.credly.com/badges/97ad28ef-6714-4f0c-863a-433bee84b54f/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        },
+        {
+            "id": 5,
+            "title": "AWS Educate Getting Started with Networking",
+            "desc": "Amazon Web Services Training & Certification",
+            "img": "/aws-educate-getting-started-with-networking.png",
+            "issueDate": "01-20-25",
+            "link": "https://www.credly.com/badges/bedd49ec-2d1f-4c7d-8f42-a8e01fe8cf70/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        },
+        {
+            "id": 6,
+            "title": "AWS Educate Getting Started with Databases",
+            "desc": "Amazon Web Services Training & Certification",
+            "img": "/aws-educate-getting-started-with-databases.png",
+            "issueDate": "01-23-25",
+            "link": "https://www.credly.com/badges/f3f5a720-d0a2-410f-a524-eb9ccc9c632b/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        },
+        {
+            "id": 7,
+            "title": "AWS Educate Getting Started with Security",
+            "desc": "Amazon Web Services Training & Certification",
+            "img": "/aws-educate-getting-started-with-security.png",
+            "issueDate": "01-23-25",
+            "link": "https://www.credly.com/badges/06c08efb-3e91-4db0-b544-e7c57863330c/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        },
+        {
+            "id": 8,
+            "title": "AWS Educate Getting Started with Serverless",
+            "desc": "Amazon Web Services Training & Certification",
+            "img": "/aws-educate-getting-started-with-serverless.png",
+            "issueDate": "01-23-25",
+            "link": "https://www.credly.com/badges/3af86aca-5a19-4ab9-a94a-732e32c9a02e/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        },
+        {
+            "id": 9,
+            "title": "AWS Educate Introduction to Cloud 101",
+            "desc": "Amazon Web Services Training & Certification",
+            "img": "/aws-educate-introduction-to-cloud-101.png",
+            "issueDate": "01-23-25",
+            "link": "https://www.credly.com/badges/4211e927-96d0-4dd9-b640-680b8011e906/public_url",
+            "className": "md:col-span-2 md:row-span-2"
+        }
+    ],
+    "gridItems": [
+          {
+              "id": 1,
+              "title": "",
+              "description": "",
+              "titleClassName": "justify-end",
+              "img": "/pixar style.png",
+              "spareImg": ""
+          }
+    ],
+    "projects": [
+          {
+              "id": 1,
+              "title": "Portable Smart Attendance & Management System",
+              "des": "A comprehensive solution for attendance management, utilizing RFID technology and a mobile-based interface for efficient tracking and reporting.",
+              "img": ["/p1-1.png", "/p1-3.png", "/p1-2.png"],
+              "iconLists": ["/re.svg", "/vscode.png", "/ts.svg", "/firebase.png", "/arduino.png"],
+              "link": "github.com/wan00000/portable-smart-attendance-system"
+          },
+          {
+              "id": 2,
+              "title": "Full Flash Mobile e-Hailing",
+              "des": "A ride-hailing platform that connect passengers & drivers. It allows for ride request real-time driver locations.",
+              "img": ["/notFound.jpg", "/notFound.jpg", "/notFound.jpg"],
+              "iconLists": ["/next.svg", "/tail.svg", "/ts.svg", "/appwrite.png", "/c.svg"],
+              "link": "github.com/wan00000/e-hailing-app"
+          },
+          {
+              "id": 3,
+              "title": "To-Do List App with AWS as the Backend",
+              "des": "A web application that allows users to create, manage, and track their tasks using AWS services for backend functionality.",
+              "img": ["/p3-1.png", "/p3-2.png", "/p3-3.png"],
+              "iconLists": ["/amplify.png", "/cognito.png", "/vpc.png", "/rds.png", "/ts.svg"],
+              "link": "github.com/wan00000/to-do-list-app"
+          },
+          {
+              "id": 4,
+              "title": "AI Image Generator",
+              "des": "A web application that utilizes OpenAI's DALL-E API to generate images based on user prompts.",
+              "img": ["/p4-1.png", "/notFound.jpg", "/notFound.jpg"],
+              "iconLists": ["/re.svg", "/tail.svg", "/ts.svg", "/chatgpt.png", "/html.png"],
+              "link": "github.com/wan00000/AI-Image-Generator"
+          }
+    ],
+    "companies": [
+          {
+              "id": 1,
+              "name": "cloudinary",
+              "img": "/cloud.svg",
+              "nameImg": "/cloudName.svg"
+          },
+          {
+              "id": 2,
+              "name": "appwrite",
+              "img": "/app.svg",
+              "nameImg": "/appName.svg"
+          },
+          {
+              "id": 3,
+              "name": "HOSTINGER",
+              "img": "/host.svg",
+              "nameImg": "/hostName.svg"
+          },
+          {
+              "id": 4,
+              "name": "stream",
+              "img": "/s.svg",
+              "nameImg": "/streamName.svg"
+          },
+          {
+              "id": 5,
+              "name": "docker.",
+              "img": "/dock.svg",
+              "nameImg": "/dockerName.svg"
+          }
+      ],
+      "workExperience": [
+          {
+              "id": 1,
+              "title": "Sales Assistant",
+              "organization": "CelcomDigi Berhad",
+              "desc": "Provide exceptional customer service by resolving issues related to Digi mobile and fibre plans.",
+              "period": "Sep 2023 - Oct 2023",
+              "skills": ["Enhanced ability to promote and sell products effectively", "Gained expertise in resolving customer issues", "Developed skills to address technical queries swiftly"],
+              "className": "md:col-span-2",
+              "containerClassName": "bg-black-100",
+              "thumbnail": "/celcomdigi.webp"
+          },
+          {
+              "id": 2,
+              "title": "Web Designer",
+              "organization": " Soloreen Ventures Enterprises",
+              "desc": "Create visually appealing, user-friendly, and functional designs for websites and web applications.",
+              "period": "Sep 2024 - Mar 2025",
+              "skills": ["Web Design", "Figma", "UI Design", "UX Design", "Creative Work", "Sprint Design"],
+              "className": "md:col-span-2",
+              "containerClassName": "bg-black-100",
+              "thumbnail": "/soloreen.jpeg"
+          },
+          {
+              "id": 3,
+              "title": "IT Intern",
+              "organization": "Texas Instruments Electronics Malaysia",
+              "desc": "Working in the development and maintenance of software applications, focusing on automation and enhancement.",
+              "period": "Mar 2025 - Now",
+              "skills": ["Web Development", "Automation", "System Integration", "API Integration", "Effective Solution Design"],
+              "className": "md:col-span-2",
+              "containerClassName": "bg-black-100",
+              "thumbnail": "/ti.jpeg"
+            }
+      ],
+      "socialMedia": [
+          {
+              "id": 1,
+              "name": "GitHub",
+              "link": "https://github.com/wan00000",
+              "img": "/git.svg"
+          },
+          {
+              "id": 2,
+              "name": "LinkedIn",
+              "link": "https://www.linkedin.com/in/izwan-husainy-mohamad-b363a9116/",
+              "img": "/link.svg"
+          }
+      ]
+}

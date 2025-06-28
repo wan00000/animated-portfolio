@@ -3,8 +3,27 @@
 import { educationItems } from "@/data/education"
 import { CalendarDays, Building2 } from "lucide-react"
 import { Button } from "./ui/MovingBorders"
+import { useEffect, useState } from "react"
+
+export type EducationType = {
+  id: number
+  title: string
+  institution: string
+  description?: string
+  period: string
+  courseWork?: string[]
+  img?: string
+}
 
 const Education = () => {
+  const [educationItems, setEducationItems] = useState<EducationType[]>([]);
+
+  useEffect(() => {
+    fetch("/api/education")
+      .then((res) => res.json())
+      .then(setEducationItems)
+      .catch((err) => console.error("Failed to load education data:", err));
+  }, []);
   return (
     <section id="education">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16 md:py-20">
