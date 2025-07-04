@@ -21,10 +21,9 @@ pipeline {
                 script {
                     try {
 			echo "Stopping and removing any existing containers"
-                    	sh "docker rm -f mysql || true"
-			sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes"
-
-                        sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes --remove-orphans"
+                    	sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes --remove-orphans"
+			sh "docker rm -f mysql || true"
+			sh "docker rm -f nextjs || true"
 			sh "docker-compose -f ${DOCKER_COMPOSE_FILE} build"
                         sh "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
                     } catch (Exception e) {
