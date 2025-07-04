@@ -38,7 +38,7 @@ const Hero = () => {
               {/* Current role */}
               <div className="flex flex-wrap items-center gap-x-2">
                 <span className="text-base md:text-lg lg:text-xl">Currently an</span>
-                <span className="text-base md:text-lg lg:text-xl font-bold text-blue-400">Information Technology Intern</span>
+                <span className="text-base md:text-lg lg:text-xl font-bold text-blue-400">INFORMATION TECHNOLOGY INTERN</span>
                 <span className="text-base md:text-lg lg:text-xl">at</span>
                 <span className="text-base md:text-lg lg:text-xl font-semibold">Texas Instruments</span>
               </div>
