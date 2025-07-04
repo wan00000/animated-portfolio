@@ -20,6 +20,8 @@ pipeline {
                 // Stop any existing containers and restart with the new ones
                 script {
                     try {
+			echo "Stopping and removing any existing containers"
+                    	sh "docker rm -f mysql || true"
 			sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes"
 
                         sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes --remove-orphans"
