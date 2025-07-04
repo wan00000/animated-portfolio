@@ -33,7 +33,7 @@ pipeline {
                 // Stop any existing containers and restart with the new ones
                 script {
                     try {
-                        sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down"
+                        sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes --remove-orphans"
                         sh "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
