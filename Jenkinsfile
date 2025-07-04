@@ -2,34 +2,63 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_COMPOSE_FILE = 'docker-compose.yml'
+        // Define environment variables for Docker Compose and the Docker project
+        DOCKER_COMPOSE_FILE = 'docker-compose.yml'  // Adjust if your file is located elsewhere
     }
 
     stages {
-        stage('Clone repository') {
+        stage('Checkout') {
             steps {
-                git branch: 'experimental', url: 'https://github.com/wan00000/animated-portfolio.git'
+                // Checkout code from GitHub repository
+                git url: 'https://github.com/wan00000/animated-portfolio.git', branch: 'experimental'  // Change branch if needed
             }
         }
-        stage('Build containers') {
+        
+        stage('Build Docker Images') {
             steps {
-                sh "docker-compose -f ${DOCKER_COMPOSE_FILE} build"
+                // Build Docker images using docker-compose
+                script {
+                    try {
+                        sh "docker-compose -f ${DOCKER_COMPOSE_FILE} build"
+                    } catch (Exception e) {
+                        currentBuild.result = 'FAILURE'
+                        throw e
+                    }
+                }
             }
         }
-        stage('Deploy (restart containers)') {
+        
+        stage('Deploy') {
             steps {
-                sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down"
-                sh "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
+                // Stop any existing containers and restart with the new ones
+                script {
+                    try {
+                        sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down"
+                        sh "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
+                    } catch (Exception e) {
+                        currentBuild.result = 'FAILURE'
+                        throw e
+                    }
+                }
             }
         }
     }
+
     post {
-        failure {
-            echo 'Build or deploy failed!'
-            // You can add notification step here (email, Slack, etc)
+        always {
+            // Clean up, notify or perform other tasks after each build
+            echo 'Cleaning up after build...'
         }
+
         success {
-            echo 'Deployed successfully!'
+            // Notify success (You can integrate notifications here like Slack, Email, etc.)
+            echo 'Build and deployment successful!'
+        }
+
+        failure {
+            // Notify failure (You can integrate notifications here like Slack, Email, etc.)
+            echo 'Build or deployment failed.'
         }
     }
 }
+
