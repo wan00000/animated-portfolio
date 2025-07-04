@@ -10,7 +10,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout code from GitHub repository
-                git url: 'https://github.com/wan00000/animated-portfolio.git', branch: 'experimental'  // Change branch if needed
+                git url: 'https://github.com/wan00000/animated-portfolio.git', branch: 'experiment'  // Change branch if needed
             }
         }
         
