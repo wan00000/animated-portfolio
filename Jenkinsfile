@@ -13,27 +13,17 @@ pipeline {
                 git url: 'https://github.com/wan00000/animated-portfolio.git', branch: 'experiment'  // Change branch if needed
             }
         }
-        
-        stage('Build Docker Images') {
-            steps {
-                // Build Docker images using docker-compose
-                script {
-                    try {
-                        sh "docker-compose -f ${DOCKER_COMPOSE_FILE} build"
-                    } catch (Exception e) {
-                        currentBuild.result = 'FAILURE'
-                        throw e
-                    }
-                }
-            }
-        }
+                
         
         stage('Deploy') {
             steps {
                 // Stop any existing containers and restart with the new ones
                 script {
                     try {
+			sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes"
+
                         sh "docker-compose -f ${DOCKER_COMPOSE_FILE} down --volumes --remove-orphans"
+			sh "docker-compose -f ${DOCKER_COMPOSE_FILE} build"
                         sh "docker-compose -f ${DOCKER_COMPOSE_FILE} up -d"
                     } catch (Exception e) {
                         currentBuild.result = 'FAILURE'
