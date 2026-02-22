@@ -13,6 +13,11 @@ export const navItems = [
     icon: "/education.png",
   },
   { 
+    name: "Experience", 
+    link: "#experience",
+    icon: "/experience.png",
+  },
+  { 
     name: "Certification", 
     link: "#certification",
     icon: "/certification.png", 
@@ -21,11 +26,6 @@ export const navItems = [
     name: "Project", 
     link: "#project",
     icon: "/project.png",
-  },
-  { 
-    name: "Experience", 
-    link: "#experience",
-    icon: "/experience.png",
   },
   { 
     name: "Contact", 
@@ -192,22 +192,61 @@ export const gridItems = [
   // },
 ];
 
-export const projects = [
+export const skills = [
   {
     id: 1,
+    title: "Cloud & Infrastructure",
+    items: ["AWS", "SAP Integration Suite", "SAP BTP", "Terraform", "Ansible", "Jenkins CI/CD", "Docker" ],
+  },
+  {
+    id: 2,
+    title: "Integration",
+    items: ["SAP CPI", "SAP PI/PO", "SAP NetWeaver", "REST", "SOAP", "JDBC", "JMS", "Insomnia/Postman" ],
+  },
+  {
+    id: 3,
+    title: "Programming & Scripting",
+    items: ["Java", "Python", "Groovy", "C++", ".Net", "Bash", "TypeScript", "XML", "XSLT", "Visual Basic", "PowerShell"],
+  },
+  {
+    id: 4,
+    title: "Monitoring & Observability",
+    items: ["SAP Cloud ALM", "Grafana", "ELK Stack"],
+  },
+  {
+    id: 5,
+    title: "Databases & Storage",
+    items: ["Oracle SQL Developer", "MSSQL", "SAP SLT", "MySQL", "Firebase RLDB"],
+  },
+  {
+    id: 6,
+    title: "Tools",
+    items: ["ITIL", "Scrum Kanban", "Jira", "Confluence", "Sharepoint"],
+  },
+  // {
+  //   id: 6,
+  //   title: "Networking & Security",
+  //   items: ["TCP/IP", "DNS", "Firewalls", "VPN", "SSL/TLS", "IAM"],
+  // },
+
+];
+
+export const projects = [
+    {
+    id: 1,
+    title: "Cloud-Native Portfolio Application",
+    des: "A cloud-native Next.js portfolio app with Aceternity UI and MySQL, containerized with Docker/Compose, deployed on AWS via Terraform and Ansible automation, and continuously delivered through CI/CD auto-deployments from Git.",
+    img: ["/p5-1.png", "/p5-2.png", "/p5-3.png"],
+    iconLists: ["/aws.png", "/terraform.webp", "/ansible.svg", "/jenkins.png", "/docker.png"],
+    link: "github.com/wan00000/animated-portfolio/tree/experiment",
+  },
+  {
+    id: 2,
     title: "Portable Smart Attendance & Management System",
     des: "A comprehensive solution for attendance management, utilizing RFID technology and a mobile-based interface for efficient tracking and reporting.",
     img: ["/p1-1.png", "/p1-3.png", "/p1-2.png"],
     iconLists: ["/re.svg", "/vscode.png", "/ts.svg", "/firebase.png", "/arduino.png"],
     link: "github.com/wan00000/portable-smart-attendance-system",
-  },
-  {
-    id: 2,
-    title: "Full Flash Mobile e-Hailing",
-    des: "A ride-hailing platform that connect passengers & drivers. It allows for ride request real-time driver locations.",
-    img: ["/notFound.jpg", "/notFound.jpg", "/notFound.jpg"],
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/appwrite.png", "/c.svg"],
-    link: "github.com/wan00000/e-hailing-app",
   },
   {
     id: 3,
@@ -279,28 +318,17 @@ export const companies = [
 export const workExperience = [
   {
     id: 1,
-    title: "Sales Assistant",
-    organization: "CelcomDigi Berhad",
-    desc: "Provide exceptional customer service by resolving issues related to Digi mobile and fibre plans.",
-    period: "Sep 2023 - Oct 2023",
-    skills: ["Enhanced ability to promote and sell products effectively", "Gained expertise in resolving customer issues", "Developed skills to address technical queries swiftly"],
+    title: "SAP Integration Engineer",
+    organization: "Infineon Technologies Malaysia",
+    desc: "Ensure reliable enterprise hybrid cloud integration platforms by resolving incidents and enhancing monitoring and deployment of SAP and non-SAP integration flows.",
+    period: "Oct 2025 - Present",
+    skills: ["SAP CPI", "SAP PI/PO", "SAP SLT", "Cloud Operations", "Middleware", "Incident Resolution", "Troubleshooting"],
     className: "md:col-span-2",
     containerClassName: "bg-black-100",
-    thumbnail: "/celcomdigi.webp",
+    thumbnail: "/infineon1.png",
   },
-  {
+    {
     id: 2,
-    title: "Web Designer",
-    organization: " Soloreen Ventures Enterprises",
-    desc: "Create visually appealing, user-friendly, and functional designs for websites and web applications.",
-    period: "Sep 2024 - Mar 2025",
-    skills: ["Web Design", "Figma", "UI Design", "UX Design", "Creative Work", "Sprint Design"],
-    className: "md:col-span-2",
-    containerClassName: "bg-black-100",
-    thumbnail: "/soloreen.jpeg",
-  },
-  {
-    id: 3,
     title: "IT Intern",
     organization: "Texas Instruments Electronics Malaysia",
     desc: "Working in the development and maintenance of software applications, focusing on automation and enhancement.",
@@ -309,6 +337,17 @@ export const workExperience = [
     className: "md:col-span-2",
     containerClassName: "bg-black-100",
     thumbnail: "/ti.jpeg",
+    },
+  {
+    id: 3,
+    title: "Web Designer",
+    organization: " Soloreen Ventures Enterprises",
+    desc: "Create visually appealing, user-friendly, and functional designs for websites and web applications.",
+    period: "Sep 2024 - Mar 2025",
+    skills: ["Web Design", "Figma", "UI Design", "UX Design", "Creative Work", "Sprint Design"],
+    className: "md:col-span-2",
+    containerClassName: "bg-black-100",
+    thumbnail: "/soloreen.jpeg",
   },
 ];
 

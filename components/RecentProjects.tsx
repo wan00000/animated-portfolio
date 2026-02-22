@@ -2,105 +2,160 @@
 
 import { FaLocationArrow } from "react-icons/fa6";
 import { projects } from "@/data";
-import { PinContainer } from "./ui/Pin";
-import { motion } from "framer-motion";
+import { GlowingEffect } from "./ui/glowing-effect";
+import { motion } from "motion/react";
+import { ExternalLink } from "lucide-react";
 
 const RecentProjects = () => {
   return (
-    <section id="project" className="py-12 md:py-20 relative z-10 overflow-hidden">
-      <motion.h1
-        className="text-center text-2xl md:text-4xl lg:text-5xl font-bold mb-6 md:mb-10"
+    <section
+      id="project"
+      className="py-16 md:py-24 relative z-10 overflow-hidden"
+    >
+      {/* Section heading */}
+      <motion.div
+        className="text-center mb-12 md:mb-16"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
       >
-        <span>PROJECT</span>
-      </motion.h1>
+        <h2 className="text-3xl text-white-200 md:text-4xl lg:text-5xl font-bold text-white">
+          PROJECT
+        </h2>
+      </motion.div>
 
-      {/* Grid with 3 columns layout */}
+      {/* Project cards grid */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {projects.map((project) => (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+          {projects.map((project, idx) => (
             <motion.div
               key={project.id}
-              className="h-[22rem] sm:h-[24rem] md:h-[26rem] w-full"
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: project.id * 0.1 }}
+              transition={{ duration: 0.5, delay: idx * 0.15 }}
             >
-              <PinContainer
-                title={project.link}
-                href={project.link.startsWith("http") ? project.link : `https://${project.link}`}
-              >
-                <div className="relative flex items-center justify-center w-full overflow-hidden h-[16vh] sm:h-[18vh] md:h-[20vh] lg:h-[22vh] rounded-2xl">
-                  <div className="image-scroll-wrapper relative w-full h-full overflow-hidden rounded-2xl">
-                    <div className="image-scroll-content">
-                      <img src={project.img[0]} alt="/notFound.png" className="w-full h-full object-cover" />
-                      <img src={project.img[1]} alt="/notFound.png" className="w-full h-full object-cover" />
-                      <img src={project.img[2]} alt="/notFound.png" className="w-full h-full object-cover" />
-                    </div>
-                  </div>
-                </div>
-
-                <h1 className="font-bold text-lg md:text-xl lg:text-2xl mt-4">{project.title}</h1>
-
-                <p
-                  className="text-xs md:text-sm lg:text-base font-light h-[10vh] md:h-[12vh] lg:h-[15vh] overflow-y-auto"
-                  style={{
-                    color: "#BEC1DD",
-                    margin: "1vh 0",
-                  }}
-                >
-                  {project.des}
-                </p>
-
-                <div className="flex items-center justify-between mt-4 mb-2">
-                  <div className="flex items-center">
-                    {project.iconLists.map((icon, index) => (
-                      <div
-                        key={index}
-                        className="border border-white/[.2] rounded-full bg-black w-7 h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 flex justify-center items-center"
-                        style={{
-                          transform: `translateX(-${4 * index + 2}px)`,
-                        }}
-                      >
-                        <img src={icon || "/placeholder.svg"} alt={`Technology ${index + 1}`} className="p-1.5 md:p-2" />
-                      </div>
-                    ))}
-                  </div>
-
-                  <a
-                    href={project.link.startsWith("http") ? project.link : `https://${project.link}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex justify-center items-center group hover:opacity-80 transition-opacity"
-                  >
-                    <p className="text-xs md:text-sm lg:text-base text-purple-400">GitHub</p>
-                    <FaLocationArrow
-                      className="ms-2 transform group-hover:translate-x-1 transition-transform w-3 h-3 md:w-4 md:h-4"
-                      color="#CBACF9"
-                    />
-                  </a>
-                </div>
-              </PinContainer>
+              <ProjectCard project={project} />
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* View All Projects Button */}
-      <div className="text-center mt-10 md:mt-16">
-        <button
-          onClick={() => window.open("https://github.com/wan00000?tab=repositories", "_blank")}
-          className="px-4 py-2 md:px-6 md:py-3 rounded-full bg-[#161A31] hover:bg-[#1E2340] transition-colors duration-300 text-white text-sm md:text-base font-medium"
+      {/* View All Projects button */}
+      <motion.div
+        className="text-center mt-12 md:mt-16"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
+        <a
+          href="https://github.com/wan00000?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 bg-white/5 text-white text-sm font-medium hover:bg-white/10 transition-colors duration-300"
         >
           View All Projects
-        </button>
-      </div>
+          <ExternalLink className="w-4 h-4" />
+        </a>
+      </motion.div>
     </section>
   );
 };
+
+function ProjectCard({
+  project,
+}: {
+  project: {
+    id: number;
+    title: string;
+    des: string;
+    img: string[];
+    iconLists: string[];
+    link: string;
+  };
+}) {
+  const href = project.link.startsWith("http")
+    ? project.link
+    : `https://${project.link}`;
+
+  return (
+    <div className="relative rounded-2xl h-full">
+      {/* Glowing border effect */}
+      <GlowingEffect
+        spread={40}
+        glow={true}
+        disabled={false}
+        proximity={64}
+        inactiveZone={0.01}
+        borderWidth={2}
+      />
+
+      {/* Card content */}
+      <div className="relative flex flex-col h-full rounded-2xl border border-white/[0.08] bg-[#0a0d1f] overflow-hidden">
+        {/* Image carousel area */}
+        <div className="relative w-full h-44 sm:h-48 md:h-52 overflow-hidden bg-[#060918]">
+          <div className="absolute inset-0">
+            <div className="image-scroll-content h-full">
+              {project.img.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt={`${project.title} screenshot ${i + 1}`}
+                  className="w-full h-full object-cover flex-shrink-0"
+                />
+              ))}
+            </div>
+          </div>
+          {/* Gradient overlay at bottom of image */}
+          <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#0a0d1f] to-transparent" />
+        </div>
+
+        {/* Text & meta content */}
+        <div className="flex flex-col flex-1 p-5 md:p-6">
+          <h3 className="text-lg md:text-xl font-bold text-white leading-tight mb-2">
+            {project.title}
+          </h3>
+
+          <p className="text-sm text-[#BEC1DD] leading-relaxed mb-5 flex-1">
+            {project.des}
+          </p>
+
+          {/* Bottom row: tech icons + link */}
+          <div className="flex items-center justify-between mt-auto pt-4 border-t border-white/[0.06]">
+            {/* Tech stack icons */}
+            <div className="flex items-center -space-x-2">
+              {project.iconLists.map((icon, index) => (
+                <div
+                  key={index}
+                  className="relative w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/[0.12] bg-[#0d1025] flex items-center justify-center"
+                  style={{ zIndex: project.iconLists.length - index }}
+                >
+                  <img
+                    src={icon || "/placeholder.svg"}
+                    alt={`Technology ${index + 1}`}
+                    className="w-4 h-4 md:w-5 md:h-5 object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* GitHub link */}
+            <a
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-sm text-[#6ee7b7] hover:text-[#a7f3d0] transition-colors group"
+            >
+              <span>GitHub</span>
+              <FaLocationArrow className="w-3 h-3 transform group-hover:translate-x-0.5 transition-transform" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default RecentProjects;
