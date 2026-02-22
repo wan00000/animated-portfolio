@@ -9,6 +9,12 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Izwan Husainy",
   description: "Self-taught developer with a passion for creating innovative solutions.",
+  openGraph: {
+    images: [{ url: "/og.png" }],
+  },
+  twitter: {
+    images: ["/og.png"],
+  },
 };
 
 export default function RootLayout({
