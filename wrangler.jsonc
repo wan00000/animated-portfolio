@@ -1,9 +1,17 @@
 {
-    "name": "animated-portfolio",
-    "main": "app/page.tsx",
-    "compatibility_date": "2025-05-04",
-    "compatibility_flags": ["nodejs_compat"],
-    "assets": {    
-      "directory": ".open-next/assets",
-      "binding": "ASSETS"}
-  }
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "animated-portfolio",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2025-05-04",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "directory": ".open-next/assets",
+    "binding": "ASSETS"
+  },
+  "services": [
+    {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "animated-portfolio"
+    }
+  ]
+}
