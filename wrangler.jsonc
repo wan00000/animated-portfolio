@@ -3,5 +3,7 @@
     "main": "app/page.tsx",
     "compatibility_date": "2025-05-04",
     "compatibility_flags": ["nodejs_compat"],
-    "assets": {"directory": "public", "binding": ["PUBLIC"]}
+    "assets": {    
+      "directory": ".open-next/assets",
+      "binding": "ASSETS"}
   }
