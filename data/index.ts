@@ -201,7 +201,7 @@ export const skills = [
   {
     id: 2,
     title: "Integration",
-    items: ["SAP CPI", "SAP PI/PO", "SAP NetWeaver", "REST", "SOAP", "JDBC", "JMS", "Insomnia/Postman" ],
+    items: ["SAP CPI", "SAP PI/PO", "SAP LT", "REST", "SOAP", "JDBC", "JMS", "Insomnia/Postman" ],
   },
   {
     id: 3,
@@ -211,12 +211,12 @@ export const skills = [
   {
     id: 4,
     title: "Monitoring & Observability",
-    items: ["SAP Cloud ALM", "Grafana", "ELK Stack"],
+    items: ["SAP Cloud ALM", "SAP NetWeaver", "ELK Stack"],
   },
   {
     id: 5,
     title: "Databases & Storage",
-    items: ["Oracle SQL Developer", "MSSQL", "SAP SLT", "MySQL", "Firebase RLDB"],
+    items: ["Oracle SQL Developer", "MSSQL", "SAP HANA DB", "MySQL", "Firebase RLDB"],
   },
   {
     id: 6,
@@ -332,7 +332,7 @@ export const workExperience = [
     title: "IT Intern",
     organization: "Texas Instruments Electronics Malaysia",
     desc: "Working in the development and maintenance of software applications, focusing on automation and enhancement.",
-    period: "Mar 2025 - Now",
+    period: "Mar 2025 - Aug 2025",
     skills: ["Web Development", "Automation", "System Integration", "API Integration", "Effective Solution Design"],
     className: "md:col-span-2",
     containerClassName: "bg-black-100",
