@@ -129,13 +129,14 @@ function ProjectCard({
               {project.iconLists.map((icon, index) => (
                 <div
                   key={index}
-                  className="relative w-8 h-8 md:w-9 md:h-9 rounded-full border border-white/[0.12] bg-[#0d1025] flex items-center justify-center"
+                  className="relative shrink-0 w-8 h-8 md:w-9 md:h-9 rounded-full overflow-hidden border border-white/[0.12] bg-[#0d1025] flex items-center justify-center"
                   style={{ zIndex: project.iconLists.length - index }}
                 >
                   <img
                     src={icon || "/placeholder.svg"}
                     alt={`Technology ${index + 1}`}
-                    className="w-4 h-4 md:w-5 md:h-5 object-contain"
+                    className="w-full h-full p-1.5 md:p-2 object-contain rounded-full"
+                    loading="lazy"
                   />
                 </div>
               ))}

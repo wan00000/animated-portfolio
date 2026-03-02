@@ -20,7 +20,7 @@ import { useState, type ReactNode } from "react";
 import { Button as MovingBorderButton } from "@/components/ui/MovingBorders";
 
 const skillIcons: Record<string, ReactNode> = {
-  "Cloud & Infrastructure": <Cloud className="h-5 w-5 text-cyan-400" />,
+  "Cloud & Automation": <Cloud className="h-5 w-5 text-cyan-400" />,
   "Integration": <Building2 className="h-5 w-5 text-blue-400" />,
   "Programming & Scripting": <Code2 className="h-5 w-5 text-emerald-400" />,
   "Monitoring & Observability": (

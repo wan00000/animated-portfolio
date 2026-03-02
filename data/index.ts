@@ -195,8 +195,8 @@ export const gridItems = [
 export const skills = [
   {
     id: 1,
-    title: "Cloud & Infrastructure",
-    items: ["AWS", "SAP Integration Suite", "SAP BTP", "Terraform", "Ansible", "Jenkins CI/CD", "Docker" ],
+    title: "Cloud & Automation",
+    items: ["AWS", "SAP BTP", "Kafka", "WildFly/JBoss", "Terraform", "Ansible", "Jenkins CI/CD", "Docker" ],
   },
   {
     id: 2,
@@ -221,7 +221,7 @@ export const skills = [
   {
     id: 6,
     title: "Tools",
-    items: ["ITIL", "Scrum Kanban", "Jira", "Confluence", "Sharepoint"],
+    items: ["ITIL", "Gitlab", "Scrum Kanban", "Jira", "Confluence", "Sharepoint"],
   },
   // {
   //   id: 6,
@@ -232,8 +232,16 @@ export const skills = [
 ];
 
 export const projects = [
-    {
+  {
     id: 1,
+    title: "Event-Driven Order Processing Middleware",
+    des: "A reference implementation of an event-driven pipeline for order processing. It shows how to decouple services using Kafka while maintaining operational resilience through retries, DLQ handling, and clear runbook-driven troubleshooting.",
+    img: ["/p6-1.png", "/p6-2.png", "/p6-3.png"],
+    iconLists: ["/kafka.jpg", "/wildfly.png", "/microprofile.png", "/postman.svg", "/docker.png"],
+    link: "github.com/wan00000/Event-Driven-Order-Processing-Middleware",
+  },
+  {
+    id: 2,
     title: "Cloud-Native Portfolio Application",
     des: "A cloud-native Next.js portfolio app with Aceternity UI and MySQL, containerized with Docker/Compose, deployed on AWS via Terraform and Ansible automation, and continuously delivered through CI/CD auto-deployments from Git.",
     img: ["/p5-1.png", "/p5-2.png", "/p5-3.png"],
@@ -241,21 +249,21 @@ export const projects = [
     link: "github.com/wan00000/animated-portfolio/tree/experiment",
   },
   {
-    id: 2,
+    id: 3,
     title: "Portable Smart Attendance & Management System",
     des: "A comprehensive solution for attendance management, utilizing RFID technology and a mobile-based interface for efficient tracking and reporting.",
     img: ["/p1-1.png", "/p1-3.png", "/p1-2.png"],
     iconLists: ["/re.svg", "/vscode.png", "/ts.svg", "/firebase.png", "/arduino.png"],
     link: "github.com/wan00000/portable-smart-attendance-system",
   },
-  {
-    id: 3,
-    title: "To-Do List App with AWS as the Backend",
-    des: "A web application that allows users to create, manage, and track their tasks using AWS services for backend functionality.",
-    img: ["/p3-1.png", "/p3-2.png", "/p3-3.png"],
-    iconLists: ["/amplify.png", "/cognito.png", "/vpc.png", "/rds.png", "/ts.svg"],
-    link: "github.com/wan00000/to-do-list-app",
-  },
+  // {
+  //   id: 4,
+  //   title: "To-Do List App with AWS as the Backend",
+  //   des: "A web application that allows users to create, manage, and track their tasks using AWS services for backend functionality.",
+  //   img: ["/p3-1.png", "/p3-2.png", "/p3-3.png"],
+  //   iconLists: ["/amplify.png", "/cognito.png", "/vpc.png", "/rds.png", "/ts.svg"],
+  //   link: "github.com/wan00000/to-do-list-app",
+  // },
   // {
   //   id: 4,
   //   title: "AI Image Generator",
