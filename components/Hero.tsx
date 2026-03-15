@@ -1,6 +1,6 @@
 "use client";
 
-import { FaLocationArrow } from "react-icons/fa6";
+import { FaLocationArrow, FaGithub } from "react-icons/fa6";
 import MagicButton from "./MagicButton";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
 import { BackgroundGradient } from "./ui/background-gradient";
@@ -37,7 +37,9 @@ const Hero = () => {
               {/* Name with text generation effect */}
               <TextGenerateEffect
                 words="IZWAN HUSAINY BIN MOHAMAD"
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-5xl 2xl:text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70"
+                highlightedWords={["BIN", "MOHAMAD"]}
+                highlightClassName="text-violet-300"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-5xl 2xl:text-6xl font-bold"
               />
 
               {/* Current role */}
@@ -71,6 +73,18 @@ const Hero = () => {
                     title="About Me"
                     icon={<FaLocationArrow />}
                     position="right"
+                  />
+                </a>
+                <a
+                  href="https://github.com/wan00000?tab=repositories"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MagicButton
+                    title="Github"
+                    icon={<FaGithub className="text-lg" />}
+                    position="left"
+                    otherClasses="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 transition-all duration-300 hover:scale-95 border border-white/10"
                   />
                 </a>
               </div>

@@ -20,16 +20,16 @@ import { useState, type ReactNode } from "react";
 import { Button as MovingBorderButton } from "@/components/ui/MovingBorders";
 
 const skillIcons: Record<string, ReactNode> = {
-  "Cloud & Automation": <Cloud className="h-5 w-5 text-cyan-400" />,
-  "Integration": <Building2 className="h-5 w-5 text-blue-400" />,
+  "Cloud, Infrastructure & DevOps": <Cloud className="h-5 w-5 text-cyan-400" />,
+  "Integration, APIs & Middleware": <Building2 className="h-5 w-5 text-blue-400" />,
   "Programming & Scripting": <Code2 className="h-5 w-5 text-emerald-400" />,
-  "Monitoring & Observability": (
+  "Monitoring & Operations": (
     <Activity className="h-5 w-5 text-amber-400" />
   ),
-  "CI/CD & Automation": <GitBranch className="h-5 w-5 text-violet-400" />,
-  "Databases & Storage": <Database className="h-5 w-5 text-sky-400" />,
-  "Tools": <Wrench className="h-5 w-5 text-emerald-400" />,
+  "Databases": <Database className="h-5 w-5 text-sky-400" />,
+  "Collaboration & Delivery": <Wrench className="h-5 w-5 text-emerald-400" />,
   // "Networking & Security": <Shield className="h-5 w-5 text-rose-400" />,
+  // "CI/CD & Automation": <GitBranch className="h-5 w-5 text-violet-400" />,
 };
 
 function GlowingSkillCard({
