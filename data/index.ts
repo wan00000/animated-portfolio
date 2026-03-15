@@ -282,7 +282,7 @@ export const projects = [
     title: "Smart Infrastructure Watchdog",
     des: "An infrastructure watchdog that monitors web access logs, runs health checks, performs cleanup, and alerts administrators when issues are detected. It is deployed on Arch Linux with a Flask dashboard and Prometheus metrics to visualize data in Grafana.",
     img: ["/p7-1.png", "/p7-2.png", "/p7-3.png"],
-    iconLists: ["/Arch.png", "/Prometheus.png", "/Grafana.png", "/Postfix.png", "/flask.png"],
+    iconLists: ["/Bash.png", "/Python.png", "/Prometheus.png", "/Grafana.png", "/Postfix.png" ],
     link: "https://github.com/wan00000/smart-watchdog",
   },
   {
