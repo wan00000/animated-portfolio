@@ -7,13 +7,16 @@ import { ThemeProvider } from "./provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:4000",
+  ),
   title: "Izwan Husainy",
   description: "Self-taught developer with a passion for creating innovative solutions.",
   openGraph: {
-    images: [{ url: "/og.png" }],
+    images: [{ url: "/profile-pic.png" }],
   },
   twitter: {
-    images: ["/og.png"],
+    images: ["/profile-pic.png"],
   },
 };
 

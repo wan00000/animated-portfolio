@@ -4,8 +4,6 @@ import { certification } from "@/data"
 import { HoverEffect } from "@/components/ui/hover-card-effect"
 import { useState } from "react"
 import { useMediaQuery } from "@/hooks/use-media-query"
-import { ExternalLink } from "lucide-react";
-import { motion } from "motion/react";
 
 const Certifications = () => {
   const [showAll, setShowAll] = useState(false)

@@ -15,7 +15,10 @@
 
 # next.js
 /.next/
+/.open-next/
+/.wrangler/
 /out/
+/bundled/
 
 # production
 /build

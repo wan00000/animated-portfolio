@@ -4,8 +4,6 @@ import {
   Cloud,
   Code2,
   Activity,
-  GitBranch,
-  Shield,
   Database,
   CalendarDays,
   Building2,
@@ -14,7 +12,6 @@ import {
 } from "lucide-react";
 import { skills } from "@/data";
 import { educationItems } from "@/data/education";
-import MagicButton from "./MagicButton";
 import { GlowingEffect } from "@/components/ui/glowing-effect";
 import { useState, type ReactNode } from "react";
 import { Button as MovingBorderButton } from "@/components/ui/MovingBorders";
@@ -142,10 +139,10 @@ const Education = () => {
             }`}
           >
             <div className="grid grid-cols-1 gap-6 sm:gap-8">
-              {educationItems.map((item) => (
+              {educationItems.map((item, index) => (
                 <MovingBorderButton
                   key={item.id}
-                  duration={Math.floor(Math.random() * 10000) + 10000}
+                  duration={10000 + (index % 5) * 2000}
                   borderRadius="1.75rem"
                   style={{
                     background: "rgb(4,7,29)",

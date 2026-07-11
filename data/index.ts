@@ -1,5 +1,3 @@
-import { link } from "fs";
-
 export const navItems = [
   { 
     name: "Home", 
@@ -253,7 +251,7 @@ export const skills = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "Databases",
     items: [
       "Oracle SQL Developer",
