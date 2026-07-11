@@ -2,15 +2,20 @@ import type { SiteProfile, SocialLink } from "@/types/portfolio";
 
 export const siteProfile: SiteProfile = {
   name: "IZWAN HUSAINY BIN MOHAMAD",
-  shortName: "IZWAN HUSAINY",
-  headline:
-    "Engineer building reliable digital systems across software, cloud, integration and automation.",
-  introduction:
-    "I design, build and operate practical technology solutions with an emphasis on reliability, maintainability and clear technical execution.",
-  currentContext:
-    "Currently working in enterprise integration and cloud operations.",
-  focusAreas: ["Software", "Cloud", "Integration", "Automation", "Operations"],
+  displayName: "IZWAN HUSAINY",
+  currentRole: "SAP Integration Engineer",
+  currentEmployer: "Infineon Technologies Malaysia",
+  currentEmployerLogo: "/infineon1.png",
+  roleDescription:
+    "Supporting reliable enterprise hybrid-cloud integration platforms across SAP and non-SAP environments, with a focus on monitoring, troubleshooting, deployment and service continuity.",
+  focusAreas: [
+    "Enterprise Integration",
+    "Cloud Operations",
+    "Middleware",
+    "Automation",
+  ],
   portrait: "/pixar-style.png",
+  githubUrl: "https://github.com/wan00000?tab=repositories",
 };
 
 export const socialMedia: SocialLink[] = [

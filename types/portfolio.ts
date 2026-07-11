@@ -12,12 +12,14 @@ export type SocialLink = {
 
 export type SiteProfile = {
   name: string;
-  shortName: string;
-  headline: string;
-  introduction: string;
-  currentContext?: string;
+  displayName: string;
+  currentRole: string;
+  currentEmployer: string;
+  currentEmployerLogo?: string;
+  roleDescription: string;
   focusAreas: string[];
   portrait: string;
+  githubUrl: string;
 };
 
 export type Project = {

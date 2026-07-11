@@ -8,9 +8,9 @@ export default function Footer() {
     <footer className="border-t border-white/[0.08] px-4 py-10 pb-28 sm:px-6 lg:px-8 md:pb-10">
       <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-lg font-semibold text-white">{siteProfile.shortName}</p>
+          <p className="text-lg font-semibold text-white">{siteProfile.displayName}</p>
           <p className="mt-2 text-sm text-white/45">Software · Cloud · Integration · Automation</p>
-          <p className="mt-5 text-xs text-white/30">© {new Date().getFullYear()} {siteProfile.shortName}</p>
+          <p className="mt-5 text-xs text-white/30">© {new Date().getFullYear()} {siteProfile.displayName}</p>
         </div>
         <div className="flex flex-wrap items-center gap-3">
           {socialMedia.map((item) => (

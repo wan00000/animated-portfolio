@@ -12,10 +12,10 @@ export default function Home() {
     <main className="relative min-h-screen overflow-x-clip bg-portfolio-bg pb-24 text-white md:pb-0">
       <PortfolioNav />
       <Hero />
-      <SelectedWork />
-      <Capabilities />
       <Experience />
+      <Capabilities />
       <Recognition />
+      <SelectedWork />
       <Background />
       <Footer />
     </main>

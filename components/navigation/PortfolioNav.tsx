@@ -6,7 +6,14 @@ import { useEffect, useState } from "react";
 
 import { navItems } from "@/data/navigation";
 
-const iconMap = { Home, Work: Layers3, Capabilities: Wrench, Experience: BriefcaseBusiness, Recognition: Award, Background: UserRound };
+const iconMap = {
+  Home,
+  Experience: BriefcaseBusiness,
+  Capabilities: Wrench,
+  Recognition: Award,
+  Work: Layers3,
+  Background: UserRound,
+};
 
 export function PortfolioNav() {
   const [activeLink, setActiveLink] = useState("#home");

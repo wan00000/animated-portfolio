@@ -1,79 +1,140 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDownRight, Github } from "lucide-react";
-import { motion } from "motion/react";
+import { ArrowDown, ArrowDownRight, Github } from "lucide-react";
+import { useRef } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 
+import HeroIntegrationMap from "@/components/hero/HeroIntegrationMap";
+import { LampContainer } from "@/components/ui/lamp-effect";
 import { siteProfile } from "@/data/site";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { motionTokens } from "@/lib/motion";
-import { BackgroundGradient } from "./ui/background-gradient";
-import { LampContainer } from "./ui/lamp-effect";
+import {
+  heroContainerVariants,
+  heroItemVariants,
+  motionTokens,
+} from "@/lib/motion";
 
 export default function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
   const showLamp = useMediaQuery("(min-width: 768px)");
+  const reduceMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
+  const [firstName, ...remainingName] = siteProfile.displayName.split(" ");
+  const surname = remainingName.join(" ");
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const mapY = useTransform(scrollYProgress, [0, 1], [0, 70]);
+  const mapOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.75, 1],
+    [1, 0.9, 0.35],
+  );
+  const contentY = useTransform(scrollYProgress, [0, 1], [0, -35]);
 
   return (
-    <section id="home" className="relative flex min-h-[100svh] scroll-mt-24 items-center overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+    <section
+      ref={heroRef}
+      id="home"
+      aria-labelledby="hero-title"
+      className="relative isolate flex min-h-[100svh] scroll-mt-24 items-center overflow-hidden px-4 pb-24 pt-28 sm:px-6 lg:px-8 lg:py-28"
+    >
       {showLamp ? (
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[72vh] overflow-hidden">
-          <LampContainer className="min-h-[62vh] bg-portfolio-bg" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[56vh] overflow-hidden opacity-65">
+          <LampContainer className="min-h-[54vh] bg-portfolio-bg" />
         </div>
       ) : (
         <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] bg-gradient-to-b from-cyan-500/10 via-[#04071d] to-transparent" />
       )}
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_35%,rgba(167,139,250,0.08),transparent_28%),radial-gradient(circle_at_15%_70%,rgba(251,113,133,0.06),transparent_25%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_32%,rgba(167,139,250,0.09),transparent_28%),radial-gradient(circle_at_14%_72%,rgba(251,113,133,0.06),transparent_25%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
+      <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[47%] -z-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[26vw] font-black tracking-[-0.08em] text-white/[0.018]">
+        HUSAINY
+      </div>
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-10 xl:gap-16">
         <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: motionTokens.duration.reveal, ease: motionTokens.easing.standard }}
-          className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left"
+          variants={heroContainerVariants}
+          initial={reduceMotion ? false : "hidden"}
+          animate="visible"
+          style={reduceMotion ? undefined : { y: contentY }}
+          className="order-1 flex flex-col items-center text-center lg:items-start lg:text-left"
         >
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400">{siteProfile.shortName}</p>
-          <h1 className="max-w-5xl text-balance text-4xl font-bold tracking-[-0.04em] text-white sm:text-5xl lg:text-7xl">
-            {siteProfile.headline}
-          </h1>
-          <p className="mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">{siteProfile.introduction}</p>
-          {siteProfile.currentContext ? <p className="mt-4 text-sm text-white/45">{siteProfile.currentContext}</p> : null}
+          <motion.div variants={heroItemVariants} className="mb-5 inline-flex items-center gap-3 rounded-full border border-cyan-300/15 bg-cyan-300/[0.05] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-100/80 sm:text-xs">
+            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.85)]" />
+            Currently at {siteProfile.currentEmployer}
+          </motion.div>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
-            <a href="#work" className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-cyan-400/30 bg-cyan-400/10 px-5 text-sm font-semibold text-cyan-100 transition hover:-translate-y-0.5 hover:bg-cyan-400/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
-              Explore selected work
-              <ArrowDownRight className="h-4 w-4" />
+          <motion.h1 id="hero-title" aria-label={siteProfile.displayName} variants={heroItemVariants} className="text-balance text-5xl font-bold leading-[0.9] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl xl:text-8xl">
+            <span className="block">{firstName}</span>
+            <span className="portfolio-gradient-text block">{surname}</span>
+          </motion.h1>
+
+          <motion.div variants={heroItemVariants} className="mt-7">
+            <p className="text-xl font-semibold text-white sm:text-2xl lg:text-3xl">{siteProfile.currentRole}</p>
+            <div className="mt-3 flex items-center justify-center gap-3 text-sm text-white/55 sm:text-base lg:justify-start">
+              {siteProfile.currentEmployerLogo ? (
+                <span className="relative h-7 w-7 overflow-hidden rounded-md bg-white">
+                  <Image src={siteProfile.currentEmployerLogo} alt="" fill sizes="28px" className="object-contain p-0.5" />
+                </span>
+              ) : null}
+              <span>{siteProfile.currentEmployer}</span>
+            </div>
+          </motion.div>
+
+          <motion.p variants={heroItemVariants} className="mt-6 max-w-2xl text-pretty text-base leading-8 text-white/65 sm:text-lg">
+            {siteProfile.roleDescription}
+          </motion.p>
+
+          <motion.div variants={heroItemVariants} className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+            <a href="#experience" className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-5 text-sm font-semibold text-cyan-50 shadow-[0_0_30px_rgba(34,211,238,0.08)] transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300/50 hover:bg-cyan-300/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
+              View my experience
+              <ArrowDownRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
             </a>
-            <a href="https://github.com/wan00000?tab=repositories" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+            <a href={siteProfile.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Izwan Husainy's GitHub profile in a new tab" className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-5 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
               <Github className="h-4 w-4" />
-              GitHub
+              Explore GitHub
             </a>
-          </div>
+          </motion.div>
 
-          <div className="mt-10 flex flex-wrap justify-center gap-x-4 gap-y-2 lg:justify-start">
+          <motion.ul variants={heroItemVariants} aria-label="Current focus areas" className="mt-9 flex flex-wrap justify-center gap-x-4 gap-y-2 lg:justify-start">
             {siteProfile.focusAreas.map((area) => (
-              <span key={area} className="text-xs font-medium uppercase tracking-[0.18em] text-white/40">{area}</span>
+              <li key={area} className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/40 sm:text-xs">{area}</li>
             ))}
-          </div>
+          </motion.ul>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: motionTokens.duration.reveal, ease: motionTokens.easing.standard, delay: 0.08 }}
-          className="order-1 flex justify-center lg:order-2 lg:justify-end"
+          transition={{
+            duration: motionTokens.duration.heroReveal,
+            delay: motionTokens.delay.heroMap,
+            ease: motionTokens.easing.standard,
+          }}
+          style={reduceMotion ? undefined : { y: mapY, opacity: mapOpacity }}
+          className="order-2"
         >
-          <div className="relative w-[210px] sm:w-[260px] lg:w-[330px]">
-            <BackgroundGradient className="rounded-2xl p-1">
-              <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-black">
-                <Image src={siteProfile.portrait} alt="Portrait of Izwan Husainy" fill priority sizes="(max-width: 640px) 210px, (max-width: 1024px) 260px, 330px" className="object-cover object-center" />
-              </div>
-            </BackgroundGradient>
-            <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-cyan-500/15 blur-3xl" />
-            <div className="pointer-events-none absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-violet-500/15 blur-3xl" />
-          </div>
+          <HeroIntegrationMap />
         </motion.div>
       </div>
+
+      {!reduceMotion ? (
+        <motion.div aria-hidden="true" className="absolute bottom-0 left-1/2 h-24 w-px -translate-x-1/2 origin-top bg-gradient-to-b from-cyan-300/70 to-transparent" style={{ scaleY: scrollYProgress }} />
+      ) : (
+        <div aria-hidden="true" className="absolute bottom-0 left-1/2 h-12 w-px -translate-x-1/2 bg-gradient-to-b from-cyan-300/40 to-transparent" />
+      )}
+
+      <a href="#experience" aria-label="Scroll to experience" className="absolute bottom-5 left-1/2 z-20 hidden min-h-11 -translate-x-1/2 items-center gap-2 rounded-full px-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/35 transition hover:text-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:flex">
+        Experience <ArrowDown className="h-3.5 w-3.5" />
+      </a>
     </section>
   );
 }

@@ -236,6 +236,38 @@
   --y: 0px;
 }
 
+@keyframes hero-node-pulse {
+  0%,
+  100% {
+    opacity: 0.72;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes hero-core-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.72;
+    transform: scale(1.02);
+  }
+}
+
+.hero-node-ambient {
+  animation: hero-node-pulse 7s ease-in-out infinite;
+}
+
+.hero-core-ambient {
+  animation: hero-core-breathe 9s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -248,5 +280,10 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .hero-node-ambient,
+  .hero-core-ambient {
+    animation: none !important;
   }
 }
