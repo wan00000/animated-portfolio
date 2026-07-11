@@ -1,29 +1,23 @@
-"use client";
-
-import { navItems } from "@/data";
-
-import Hero from "@/components/Hero";
-import Education from "@/components/Education";
-import Footer from "@/components/Footer";
+import Background from "@/components/Background";
+import Capabilities from "@/components/Capabilities";
 import Experience from "@/components/Experience";
-import RecentProjects from "@/components/RecentProjects";
-import { FloatingNav } from "@/components/ui/FloatingNavbar";
-import Certifications from "@/components/Certification";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import Recognition from "@/components/Recognition";
+import SelectedWork from "@/components/SelectedWork";
+import { PortfolioNav } from "@/components/navigation/PortfolioNav";
 
-const Home = () => {
+export default function Home() {
   return (
-    <main className="relative bg-black-100 flex justify-center items-center flex-col overflow-hidden mx-auto sm:px-10 px-5">
-      <div className="max-w-7xl w-screen">
-        <FloatingNav navItems={navItems} />
-        <Hero />
-        <Education />
-        <Experience/>
-        <Certifications />
-        <RecentProjects />
-        <Footer />
-      </div>
+    <main className="relative min-h-screen overflow-x-clip bg-portfolio-bg pb-24 text-white md:pb-0">
+      <PortfolioNav />
+      <Hero />
+      <SelectedWork />
+      <Capabilities />
+      <Experience />
+      <Recognition />
+      <Background />
+      <Footer />
     </main>
   );
-};
-
-export default Home;
+}

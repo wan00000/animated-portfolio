@@ -1,15 +1,4 @@
-export type EducationItem = {
-  id: number
-  title: string 
-  institution: string
-  description: string
-  period: string 
-  courseWork?: string[]
-  className?: string
-  img?: string
-  imgClassName?: string
-  titleClassName?: string
-}
+import type { EducationItem } from "@/types/portfolio";
 
 export const educationItems: EducationItem[] = [
   {
@@ -18,7 +7,7 @@ export const educationItems: EducationItem[] = [
     institution: "Universiti Putra Malaysia (UPM)",
     description: "",
     period: "Oct 2021 - Oct 2025",
-    courseWork: [" Cloud Computing", "Network Programming", "Database Principles", "Business Analytics", "Network Security", "Artificial Intelligence", "Data Structures"],
+    courseWork: ["Cloud Computing", "Network Programming", "Database Principles", "Business Analytics", "Network Security", "Artificial Intelligence", "Data Structures"],
     img: "/upm.png",
   },
   {
@@ -30,4 +19,4 @@ export const educationItems: EducationItem[] = [
     courseWork: ["Biology", "Chemistry", "Mathematics", "Physics", "English", "Agriculture"],
     img: "/upm.png",
   },
-]
+];

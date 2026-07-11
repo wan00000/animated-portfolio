@@ -1,6 +1,21 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@theme {
+  --color-portfolio-bg: #000319;
+  --color-portfolio-surface: #0a0d1f;
+  --color-portfolio-surface-deep: #060918;
+  --color-portfolio-surface-soft: #0c0c1d;
+  --color-portfolio-text: #ffffff;
+  --color-portfolio-muted: #bec1dd;
+  --color-portfolio-subtle: #c1c2d3;
+  --color-portfolio-cyan: #22d3ee;
+  --color-portfolio-violet: #a78bfa;
+  --color-portfolio-rose: #fb7185;
+  --color-portfolio-green: #6ee7b7;
+  --radius-portfolio-card: 1.25rem;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -145,7 +160,7 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-portfolio-bg text-foreground;
     overflow-x: hidden;
   }
   button {
@@ -156,6 +171,15 @@
 @layer utilities {
   .heading {
     @apply font-bold text-4xl md:text-5xl text-center;
+  }
+  .portfolio-gradient-text {
+    @apply bg-gradient-to-r from-cyan-400 via-violet-400 to-rose-400 bg-clip-text text-transparent;
+  }
+  .portfolio-card {
+    @apply rounded-[var(--radius-portfolio-card)] border border-white/[0.08] bg-portfolio-surface;
+  }
+  .portfolio-muted {
+    @apply text-portfolio-muted;
   }
 }
 
@@ -207,26 +231,22 @@
   animation: scroll-left 20s linear infinite;
 }
 
-.image-scroll-wrapper {
-  position: relative;
-  overflow: hidden;
-}
-
-.image-scroll-content {
-  display: flex;
-  animation: scrollImages 30s linear infinite;
-}
-
-@keyframes scrollImages {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}
-
 .group:hover {
   --x: 0px;
   --y: 0px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

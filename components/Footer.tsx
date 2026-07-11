@@ -1,67 +1,26 @@
-"use client";
+import Image from "next/image";
+import { ArrowUp } from "lucide-react";
 
-import { FaLocationArrow } from "react-icons/fa6";
-import { socialMedia} from "@/data";
-import MagicButton from "./MagicButton";
+import { siteProfile, socialMedia } from "@/data/site";
 
-const Footer = () => {
-
+export default function Footer() {
   return (
-    <footer
-      className="w-full mb-6 sm:mb-10 pt-10 sm:pt-16 md:pt-20 overflow-hidden px-4 sm:px-6 md:px-8"
-      id="contact"
-    >
-
-
-      {/* CTA Section */}
-      <div className="flex flex-col items-center relative z-10">
-        <h1 className="text-center text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold max-w-[90%] sm:max-w-[80%] lg:max-w-[45vw] text-balance text-white">
-          Eagerly embracing all{" "}
-          <span className="bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
-            new challenges
-          </span>{" "}
-          ahead
-        </h1>
-        <p className="text-white/60 mt-4 sm:mt-6 md:mt-10 mb-5 text-center text-sm sm:text-base max-w-[90%] sm:max-w-[80%] md:max-w-[70%]">
-          {"I'm eager to take on new challenges, contribute to reliable system operations, and grow across cloud and enterprise technologies."}
-        </p>
-        <a href="mailto:izwanhusainy02@gmail.com">
-          <MagicButton
-            title="Email"
-            icon={<FaLocationArrow />}
-            position="right"
-          />
-        </a>
-      </div>
-
-      {/* Bottom bar */}
-      <div className="flex mt-10 sm:mt-12 md:mt-16 flex-col md:flex-row justify-between items-center gap-6 md:gap-0 relative z-10">
-        <p className="text-sm md:text-base font-light md:font-normal text-center md:text-left text-white/60">
-          {"Copyright \u00A9 2025 Izwan Husainy. All rights reserved."}
-        </p>
-
-        <div className="flex items-center gap-4 sm:gap-3">
-          {socialMedia.map((info) => (
-            <a
-              key={info.id}
-              href={info.link || "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-9 h-9 sm:w-10 sm:h-10 cursor-pointer flex justify-center items-center backdrop-filter backdrop-blur-lg saturate-150 bg-white/[0.03] rounded-lg border border-white/[0.08] hover:border-white/[0.15] transition-all"
-            >
-              <img
-                src={info.img || "/placeholder.svg"}
-                alt={info.name || "Social media"}
-                width={18}
-                height={18}
-                className="w-[18px] sm:w-[20px] h-[18px] sm:h-[20px]"
-              />
+    <footer className="border-t border-white/[0.08] px-4 py-10 pb-28 sm:px-6 lg:px-8 md:pb-10">
+      <div className="mx-auto flex max-w-7xl flex-col gap-8 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="text-lg font-semibold text-white">{siteProfile.shortName}</p>
+          <p className="mt-2 text-sm text-white/45">Software · Cloud · Integration · Automation</p>
+          <p className="mt-5 text-xs text-white/30">© {new Date().getFullYear()} {siteProfile.shortName}</p>
+        </div>
+        <div className="flex flex-wrap items-center gap-3">
+          {socialMedia.map((item) => (
+            <a key={item.id} href={item.link} target="_blank" rel="noopener noreferrer" aria-label={item.name} className="flex min-h-11 items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 text-sm text-white/65 transition hover:border-white/[0.15] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+              <Image src={item.img} alt="" width={18} height={18} className="h-[18px] w-[18px]" />{item.name}
             </a>
           ))}
+          <a href="#home" className="flex min-h-11 items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 text-sm text-white/65 transition hover:border-white/[0.15] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Back to top <ArrowUp className="h-4 w-4" /></a>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

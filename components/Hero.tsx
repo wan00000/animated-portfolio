@@ -1,118 +1,79 @@
 "use client";
 
-import { FaLocationArrow, FaGithub } from "react-icons/fa6";
-import MagicButton from "./MagicButton";
-import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import Image from "next/image";
+import { ArrowDownRight, Github } from "lucide-react";
+import { motion } from "motion/react";
+
+import { siteProfile } from "@/data/site";
+import { useMediaQuery } from "@/hooks/use-media-query";
+import { motionTokens } from "@/lib/motion";
 import { BackgroundGradient } from "./ui/background-gradient";
 import { LampContainer } from "./ui/lamp-effect";
-import { useMobile } from "@/hooks/use-mobile";
 
-const Hero = () => {
-  const isMobile = useMobile();
+export default function Hero() {
+  const showLamp = useMediaQuery("(min-width: 768px)");
 
   return (
-    <section id="home" className="relative min-h-[100svh] flex flex-col">
-      {/* Lamp Container as background - hidden on mobile for performance */}
-      {!isMobile && (
-        <div className="absolute top-0 inset-x-0 w-full h-[60vh] md:h-[65vh] lg:h-[70vh] xl:h-[75vh] overflow-hidden z-0">
-          <LampContainer className="min-h-[50vh] md:min-h-[55vh] lg:min-h-[60vh] xl:min-h-[65vh]">
-            {/* Empty content for the lamp effect */}
-          </LampContainer>
+    <section id="home" className="relative flex min-h-[100svh] scroll-mt-24 items-center overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
+      {showLamp ? (
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[72vh] overflow-hidden">
+          <LampContainer className="min-h-[62vh] bg-portfolio-bg" />
         </div>
+      ) : (
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] bg-gradient-to-b from-cyan-500/10 via-[#04071d] to-transparent" />
       )}
 
-      {/* Mobile gradient fallback */}
-      {isMobile && (
-        <div className="absolute top-0 inset-x-0 w-full h-[40vh] z-0">
-          <div className="w-full h-full bg-gradient-to-b from-cyan-500/10 via-[#04071d] to-transparent" />
-        </div>
-      )}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_35%,rgba(167,139,250,0.08),transparent_28%),radial-gradient(circle_at_15%_70%,rgba(251,113,133,0.06),transparent_25%)]" />
 
-      {/* Main content container */}
-      <div className="relative z-10 flex flex-1 items-center w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 lg:py-0">
-        <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-10 lg:gap-12 xl:gap-16 w-full">
-          {/* Left side - Text content */}
-          <div className="w-full lg:w-1/2 order-2 lg:order-1">
-            <div className="flex flex-col gap-4 sm:gap-5 md:gap-6 text-center lg:text-left">
-              {/* Name with text generation effect */}
-              <TextGenerateEffect
-                words="IZWAN HUSAINY BIN MOHAMAD"
-                highlightedWords={["BIN", "MOHAMAD"]}
-                highlightClassName="text-violet-300"
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] xl:text-5xl 2xl:text-6xl font-bold"
-              />
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: motionTokens.duration.reveal, ease: motionTokens.easing.standard }}
+          className="order-2 flex flex-col items-center text-center lg:order-1 lg:items-start lg:text-left"
+        >
+          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.28em] text-cyan-400">{siteProfile.shortName}</p>
+          <h1 className="max-w-5xl text-balance text-4xl font-bold tracking-[-0.04em] text-white sm:text-5xl lg:text-7xl">
+            {siteProfile.headline}
+          </h1>
+          <p className="mt-6 max-w-2xl text-base leading-8 text-white/65 sm:text-lg">{siteProfile.introduction}</p>
+          {siteProfile.currentContext ? <p className="mt-4 text-sm text-white/45">{siteProfile.currentContext}</p> : null}
 
-              {/* Current role */}
-              <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-1.5 sm:gap-x-2">
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90">
-                  Currently an
-                </span>
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl font-bold text-cyan-400">
-                  SAP Integration Engineer
-                </span>
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl text-white/90">
-                  at
-                </span>
-                <span className="text-sm sm:text-base md:text-lg lg:text-xl font-semibold text-white">
-                  Infineon Technologies Malaysia
-                </span>
-              </div>
-
-              {/* Brief introduction */}
-              <p className="text-white/70 max-w-lg text-sm sm:text-base md:text-lg leading-relaxed mx-auto lg:mx-0">
-                Passionate about ensuring reliable enterprise hybrid cloud
-                operations by resolving incidents, improving monitoring and
-                deployments, and continuously growing across cloud and enterprise
-                technologies.
-              </p>
-
-              {/* Call to action buttons */}
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-1 sm:pt-2">
-                <a href="#education">
-                  <MagicButton
-                    title="About Me"
-                    icon={<FaLocationArrow />}
-                    position="right"
-                  />
-                </a>
-                <a
-                  href="https://github.com/wan00000?tab=repositories"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <MagicButton
-                    title="Github"
-                    icon={<FaGithub className="text-lg" />}
-                    position="left"
-                    otherClasses="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 transition-all duration-300 hover:scale-95 border border-white/10"
-                  />
-                </a>
-              </div>
-            </div>
+          <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <a href="#work" className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-cyan-400/30 bg-cyan-400/10 px-5 text-sm font-semibold text-cyan-100 transition hover:-translate-y-0.5 hover:bg-cyan-400/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
+              Explore selected work
+              <ArrowDownRight className="h-4 w-4" />
+            </a>
+            <a href="https://github.com/wan00000?tab=repositories" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-white/10 bg-white/[0.04] px-5 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+              <Github className="h-4 w-4" />
+              GitHub
+            </a>
           </div>
 
-          {/* Right side - Visual content */}
-          <div className="w-full lg:w-2/5 order-1 lg:order-2 flex justify-center lg:justify-end">
-            <div className="relative w-[180px] sm:w-[220px] md:w-[260px] lg:w-[280px] xl:w-[320px] 2xl:w-[360px]">
-              <BackgroundGradient className="rounded-2xl p-1 w-full">
-                <div className="relative bg-black rounded-xl overflow-hidden aspect-[3/4] w-full">
-                  <img
-                    src="/pixar-style.png"
-                    alt="Izwan Husainy Profile Picture"
-                    className="w-full h-full object-cover object-center"
-                  />
-                </div>
-              </BackgroundGradient>
-
-              {/* Decorative blur elements */}
-              <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-cyan-500/15 rounded-full blur-xl sm:blur-2xl pointer-events-none" />
-              <div className="absolute -bottom-6 -left-6 sm:-bottom-8 sm:-left-8 lg:-bottom-10 lg:-left-10 w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 bg-violet-500/15 rounded-full blur-2xl sm:blur-3xl pointer-events-none" />
-            </div>
+          <div className="mt-10 flex flex-wrap justify-center gap-x-4 gap-y-2 lg:justify-start">
+            {siteProfile.focusAreas.map((area) => (
+              <span key={area} className="text-xs font-medium uppercase tracking-[0.18em] text-white/40">{area}</span>
+            ))}
           </div>
-        </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: motionTokens.duration.reveal, ease: motionTokens.easing.standard, delay: 0.08 }}
+          className="order-1 flex justify-center lg:order-2 lg:justify-end"
+        >
+          <div className="relative w-[210px] sm:w-[260px] lg:w-[330px]">
+            <BackgroundGradient className="rounded-2xl p-1">
+              <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-black">
+                <Image src={siteProfile.portrait} alt="Portrait of Izwan Husainy" fill priority sizes="(max-width: 640px) 210px, (max-width: 1024px) 260px, 330px" className="object-cover object-center" />
+              </div>
+            </BackgroundGradient>
+            <div className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-cyan-500/15 blur-3xl" />
+            <div className="pointer-events-none absolute -bottom-10 -left-10 h-32 w-32 rounded-full bg-violet-500/15 blur-3xl" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
-};
-
-export default Hero;
+}
