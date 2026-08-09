@@ -65,7 +65,32 @@ const desktopNodes = [
   },
 ] as const;
 
-const mobileNodeIds = new Set(["sap", "cloud", "apis", "automation"]);
+const mobileNodes = [
+  {
+    ...desktopNodes[0],
+    x: 16,
+    y: 22,
+    path: "M16 22 C32 29 42 40 50 50",
+  },
+  {
+    ...desktopNodes[1],
+    x: 84,
+    y: 14,
+    path: "M84 14 C69 27 59 41 50 50",
+  },
+  {
+    ...desktopNodes[2],
+    x: 84,
+    y: 60,
+    path: "M84 60 C69 55 59 52 50 50",
+  },
+  {
+    ...desktopNodes[4],
+    x: 18,
+    y: 82,
+    path: "M18 82 C31 68 41 58 50 50",
+  },
+] as const;
 
 const accentStyles = {
   cyan: {
@@ -89,9 +114,7 @@ export default function HeroIntegrationMap() {
   const enableParallax = useMediaQuery(
     "(min-width: 1024px) and (pointer: fine)",
   );
-  const nodes = showAllNodes
-    ? desktopNodes
-    : desktopNodes.filter((node) => mobileNodeIds.has(node.id));
+  const nodes = showAllNodes ? desktopNodes : mobileNodes;
 
   const parallaxX = useMotionValue(0);
   const parallaxY = useMotionValue(0);
@@ -119,7 +142,7 @@ export default function HeroIntegrationMap() {
       onPointerMove={handlePointerMove}
       onPointerLeave={resetParallax}
       data-hero-map
-      className="relative mx-auto aspect-square w-[calc(100%+2rem)] max-w-[360px] sm:w-full sm:max-w-[440px] lg:max-w-[540px]"
+      className="relative mx-auto aspect-square w-full max-w-[300px] min-[400px]:max-w-[320px] sm:max-w-[440px] lg:max-w-[540px]"
     >
       <motion.div
         style={{ x: springX, y: springY }}
@@ -183,7 +206,7 @@ export default function HeroIntegrationMap() {
           ))}
         </svg>
 
-        <div data-hero-portrait className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-[170px] -translate-x-1/2 -translate-y-1/2 min-[360px]:w-[190px] sm:w-[230px] lg:w-[280px]">
+        <div data-hero-portrait className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-[150px] -translate-x-1/2 -translate-y-1/2 min-[360px]:w-[170px] sm:w-[230px] lg:w-[280px]">
           <BackgroundGradient
             animate={Boolean(enableParallax && !reduceMotion && !motionReduced)}
             className="rounded-[2rem] p-1"
@@ -194,7 +217,7 @@ export default function HeroIntegrationMap() {
                 alt={`Portrait of ${siteProfile.displayName}`}
                 fill
                 priority
-                sizes="(max-width: 359px) 170px, (max-width: 640px) 190px, (max-width: 1024px) 230px, 280px"
+                sizes="(max-width: 359px) 150px, (max-width: 640px) 170px, (max-width: 1024px) 230px, 280px"
                 className="object-cover object-center"
               />
             </div>
@@ -215,7 +238,7 @@ export default function HeroIntegrationMap() {
             className="pointer-events-none absolute z-30 -translate-x-1/2 -translate-y-1/2"
             style={{ left: `${node.x}%`, top: `${node.y}%` }}
           >
-            <div className="hero-node-ambient whitespace-nowrap rounded-full border border-white/10 bg-[#080c20]/85 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/75 shadow-lg backdrop-blur-md sm:text-xs">
+            <div className="hero-node-ambient whitespace-nowrap rounded-full border border-white/10 bg-[#080c20]/85 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/75 shadow-lg backdrop-blur-md sm:px-3 sm:py-2 sm:text-xs sm:tracking-[0.16em]">
               <span
                 aria-hidden="true"
                 className={`mr-2 inline-block h-1.5 w-1.5 rounded-full ${accentStyles[node.accent].dot}`}
