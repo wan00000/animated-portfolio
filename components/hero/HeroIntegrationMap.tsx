@@ -1,253 +1,180 @@
 "use client";
 
 import Image from "next/image";
-import type { PointerEvent } from "react";
-import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useSpring,
-} from "motion/react";
+import { useRef, useState, useSyncExternalStore, type PointerEvent } from "react";
+import { Pause, Play } from "lucide-react";
+import { motion, useInView, useMotionValue, useSpring } from "motion/react";
 
 import { siteProfile } from "@/data/site";
 import { useMediaQuery } from "@/hooks/use-media-query";
-import { motionTokens } from "@/lib/motion";
-import { BackgroundGradient } from "@/components/ui/background-gradient";
 
-const desktopNodes = [
+const nodes = [
   {
-    id: "sap",
-    label: "SAP",
-    x: 12,
-    y: 23,
-    accent: "cyan",
-    path: "M12 23 C31 28 40 39 50 50",
+    id: "integration",
+    label: "Integration",
+    description: "Connecting SAP, APIs, and middleware across enterprise systems.",
+    x: 18,
+    y: 16,
+    path: "M18 16 C18 38 33 45 50 50",
+    color: "#67e8f9",
+    accent: "text-cyan-200",
+    selected: "border-cyan-200/50 bg-cyan-300/[0.08]",
   },
   {
     id: "cloud",
     label: "Cloud",
-    x: 91,
-    y: 11,
-    accent: "violet",
-    path: "M91 11 C72 24 62 38 50 50",
-  },
-  {
-    id: "apis",
-    label: "APIs",
-    x: 91,
-    y: 52,
-    accent: "rose",
-    path: "M91 52 C73 49 62 49 50 50",
-  },
-  {
-    id: "middleware",
-    label: "Middleware",
-    x: 76,
-    y: 92,
-    accent: "cyan",
-    path: "M76 92 C67 72 59 59 50 50",
+    description: "Supporting reliable platforms across hybrid-cloud environments.",
+    x: 82,
+    y: 24,
+    path: "M82 24 C85 43 68 44 50 50",
+    color: "#c4b5fd",
+    accent: "text-violet-200",
+    selected: "border-violet-200/50 bg-violet-300/[0.08]",
   },
   {
     id: "automation",
     label: "Automation",
-    x: 22,
-    y: 94,
-    accent: "violet",
-    path: "M22 94 C31 72 40 59 50 50",
-  },
-  {
-    id: "operations",
-    label: "Operations",
-    x: 11,
-    y: 52,
-    accent: "rose",
-    path: "M11 52 C27 49 38 49 50 50",
+    description: "Making deployments and operational workflows repeatable.",
+    x: 68,
+    y: 88,
+    path: "M68 88 C75 65 61 56 50 50",
+    color: "#5eead4",
+    accent: "text-teal-200",
+    selected: "border-teal-200/50 bg-teal-300/[0.08]",
   },
 ] as const;
 
-const mobileNodes = [
-  {
-    ...desktopNodes[0],
-    x: 16,
-    y: 22,
-    path: "M16 22 C32 29 42 40 50 50",
-  },
-  {
-    ...desktopNodes[1],
-    x: 84,
-    y: 14,
-    path: "M84 14 C69 27 59 41 50 50",
-  },
-  {
-    ...desktopNodes[2],
-    x: 84,
-    y: 60,
-    path: "M84 60 C69 55 59 52 50 50",
-  },
-  {
-    ...desktopNodes[4],
-    x: 18,
-    y: 82,
-    path: "M18 82 C31 68 41 58 50 50",
-  },
-] as const;
+type NodeId = typeof nodes[number]["id"];
 
-const accentStyles = {
-  cyan: {
-    dot: "bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.8)]",
-    signal: "rgba(34,211,238,0.9)",
-  },
-  violet: {
-    dot: "bg-violet-300 shadow-[0_0_12px_rgba(167,139,250,0.8)]",
-    signal: "rgba(167,139,250,0.9)",
-  },
-  rose: {
-    dot: "bg-rose-300 shadow-[0_0_12px_rgba(251,113,133,0.8)]",
-    signal: "rgba(251,113,133,0.9)",
-  },
-};
+function subscribeVisibility(onChange: () => void) {
+  document.addEventListener("visibilitychange", onChange);
+  return () => document.removeEventListener("visibilitychange", onChange);
+}
+
+const getVisibility = () => document.visibilityState === "visible";
+const getServerVisibility = () => false;
 
 export default function HeroIntegrationMap() {
-  const motionReduced = useReducedMotion();
-  const reduceMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const showAllNodes = useMediaQuery("(min-width: 768px)");
-  const enableParallax = useMediaQuery(
-    "(min-width: 1024px) and (pointer: fine)",
-  );
-  const nodes = showAllNodes ? desktopNodes : mobileNodes;
+  const mapRef = useRef<HTMLDivElement>(null);
+  const inView = useInView(mapRef, { amount: 0.15 });
+  const pageVisible = useSyncExternalStore(subscribeVisibility, getVisibility, getServerVisibility);
+  const allowMotion = useMediaQuery("(prefers-reduced-motion: no-preference)");
+  const finePointer = useMediaQuery("(min-width: 1024px) and (hover: hover) and (pointer: fine)");
+  const [paused, setPaused] = useState(false);
+  const [selectedId, setSelectedId] = useState<NodeId>("integration");
+  const [hoveredId, setHoveredId] = useState<NodeId | null>(null);
+  const [focusedId, setFocusedId] = useState<NodeId | null>(null);
+  const highlightedId = hoveredId ?? focusedId ?? selectedId;
+  const running = allowMotion && inView && pageVisible && !paused;
+  const enableParallax = running && finePointer;
 
-  const parallaxX = useMotionValue(0);
-  const parallaxY = useMotionValue(0);
-  const springX = useSpring(parallaxX, { stiffness: 120, damping: 22 });
-  const springY = useSpring(parallaxY, { stiffness: 120, damping: 22 });
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const springX = useSpring(pointerX, { stiffness: 90, damping: 24 });
+  const springY = useSpring(pointerY, { stiffness: 90, damping: 24 });
 
-  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (!enableParallax || reduceMotion || motionReduced) return;
+  function handlePointerMove(event: PointerEvent<HTMLDivElement>) {
+    if (!enableParallax || event.pointerType !== "mouse") return;
     const bounds = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - bounds.left) / bounds.width - 0.5;
     const y = (event.clientY - bounds.top) / bounds.height - 0.5;
-    parallaxX.set(x * 16);
-    parallaxY.set(y * 16);
-  };
+    pointerX.set(Math.max(-4, Math.min(4, x * 8)));
+    pointerY.set(Math.max(-4, Math.min(4, y * 8)));
+  }
 
-  const resetParallax = () => {
-    parallaxX.set(0);
-    parallaxY.set(0);
-  };
+  function resetParallax() {
+    pointerX.set(0);
+    pointerY.set(0);
+    setHoveredId(null);
+  }
 
   return (
-    <div
-      role="img"
-      aria-label="Izwan Husainy at the center of an enterprise integration system connecting SAP, cloud, APIs, middleware, automation and operations"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={resetParallax}
-      data-hero-map
-      className="relative mx-auto aspect-square w-full max-w-[300px] min-[400px]:max-w-[320px] sm:max-w-[440px] lg:max-w-[540px]"
-    >
-      <motion.div
-        style={{ x: springX, y: springY }}
-        className="relative isolate h-full w-full"
-      >
-        <div className="pointer-events-none absolute inset-[13%] rounded-full bg-cyan-400/[0.07] blur-3xl" />
-        <div className="hero-core-ambient pointer-events-none absolute inset-[19%] rounded-full border border-cyan-300/10 bg-[radial-gradient(circle,rgba(34,211,238,0.13),rgba(167,139,250,0.04)_48%,transparent_72%)]" />
-        <div className="pointer-events-none absolute inset-[25%] rounded-full border border-white/[0.06]" />
+    <div ref={mapRef} data-hero-map data-motion-running={running} className="mx-auto w-full max-w-[520px]">
+      <div onPointerMove={handlePointerMove} onPointerLeave={resetParallax} className="relative isolate aspect-square">
+        <motion.div style={{ x: enableParallax ? springX : 0, y: enableParallax ? springY : 0 }} className="relative h-full w-full">
+          <div aria-hidden="true" className="hero-portrait-glow pointer-events-none absolute inset-[8%] rounded-full bg-[radial-gradient(ellipse_at_35%_35%,rgba(34,211,238,0.13),transparent_60%),radial-gradient(ellipse_at_70%_65%,rgba(167,139,250,0.12),transparent_65%)] blur-2xl" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-[15%] rounded-full border border-white/[0.05]" />
 
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
-        >
-          <defs>
-            <linearGradient id="hero-line-gradient" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="rgba(34,211,238,0.28)" />
-              <stop offset="50%" stopColor="rgba(167,139,250,0.42)" />
-              <stop offset="100%" stopColor="rgba(251,113,133,0.22)" />
-            </linearGradient>
-          </defs>
-
-          {nodes.map((node, index) => (
-            <g key={node.id}>
-              <motion.path
-                data-hero-path
-                d={node.path}
-                fill="none"
-                stroke="url(#hero-line-gradient)"
-                strokeWidth="0.45"
-                vectorEffect="non-scaling-stroke"
-                initial={reduceMotion ? false : { pathLength: 0, opacity: 0 }}
-                animate={{ pathLength: 1, opacity: 0.58 }}
-                transition={{
-                  duration: 1.1,
-                  delay: motionTokens.delay.heroMap + index * 0.07,
-                  ease: motionTokens.easing.standard,
-                }}
-              />
-              {!reduceMotion ? (
-                <motion.path
+          <svg aria-hidden="true" focusable="false" viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full">
+            {nodes.map((node, index) => (
+              <g key={node.id}>
+                <path
+                  data-hero-path
+                  d={node.path}
+                  pathLength="100"
+                  fill="none"
+                  stroke={node.color}
+                  strokeWidth="1.2"
+                  vectorEffect="non-scaling-stroke"
+                  className="hero-connection-line motion-safe:transition-opacity motion-safe:duration-200"
+                  style={{ opacity: highlightedId === node.id ? 0.8 : 0.25, animationDelay: `${index * 120}ms` }}
+                />
+                <path
                   data-hero-signal
                   d={node.path}
+                  pathLength="100"
                   fill="none"
-                  stroke={accentStyles[node.accent].signal}
-                  strokeWidth="0.75"
+                  stroke={node.color}
+                  strokeWidth="2.5"
                   strokeLinecap="round"
-                  strokeDasharray="1 16"
+                  strokeDasharray="3 100"
                   vectorEffect="non-scaling-stroke"
-                  animate={{ strokeDashoffset: [0, -34] }}
-                  transition={{
-                    duration: 3.8,
-                    repeat: Infinity,
-                    ease: "linear",
-                    delay: 1 + index * 0.22,
-                  }}
+                  className="hero-connection-signal"
+                  style={{ animationDelay: `${1.2 + index * 5}s` }}
                 />
-              ) : null}
-            </g>
-          ))}
-        </svg>
+              </g>
+            ))}
+          </svg>
 
-        <div data-hero-portrait className="pointer-events-none absolute left-1/2 top-1/2 z-20 w-[150px] -translate-x-1/2 -translate-y-1/2 min-[360px]:w-[170px] sm:w-[230px] lg:w-[280px]">
-          <BackgroundGradient
-            animate={Boolean(enableParallax && !reduceMotion && !motionReduced)}
-            className="rounded-[2rem] p-1"
-          >
-            <div className="relative aspect-[4/5] overflow-hidden rounded-[1.75rem] bg-black">
-              <Image
-                src={siteProfile.portrait}
-                alt={`Portrait of ${siteProfile.displayName}`}
-                fill
-                priority
-                sizes="(max-width: 359px) 150px, (max-width: 640px) 170px, (max-width: 1024px) 230px, 280px"
-                className="object-cover object-center"
-              />
+          <div data-hero-portrait className="absolute left-1/2 top-1/2 z-10 w-[46%] -translate-x-1/2 -translate-y-1/2">
+            <div className="rounded-[1.8rem] bg-[linear-gradient(135deg,rgba(103,232,249,0.45),rgba(196,181,253,0.22),rgba(94,234,212,0.2))] p-px">
+              <div className="relative aspect-[4/5] overflow-hidden rounded-[calc(1.8rem-1px)] bg-portfolio-surface">
+                <Image src={siteProfile.portrait} alt={`Portrait of ${siteProfile.displayName}`} fill priority sizes="(max-width: 639px) 46vw, (max-width: 1023px) 239px, 24vw" className="object-cover object-center" />
+              </div>
             </div>
-          </BackgroundGradient>
-        </div>
+          </div>
 
-        {nodes.map((node, index) => (
-          <motion.div
-            key={node.id}
-            data-hero-node={node.id}
-            initial={reduceMotion ? false : { opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: motionTokens.duration.reveal,
-              delay: 0.55 + index * 0.08,
-              ease: motionTokens.easing.standard,
-            }}
-            className="pointer-events-none absolute z-30 -translate-x-1/2 -translate-y-1/2"
-            style={{ left: `${node.x}%`, top: `${node.y}%` }}
-          >
-            <div className="hero-node-ambient whitespace-nowrap rounded-full border border-white/10 bg-[#080c20]/85 px-2.5 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/75 shadow-lg backdrop-blur-md sm:px-3 sm:py-2 sm:text-xs sm:tracking-[0.16em]">
-              <span
-                aria-hidden="true"
-                className={`mr-2 inline-block h-1.5 w-1.5 rounded-full ${accentStyles[node.accent].dot}`}
-              />
-              {node.label}
-            </div>
-          </motion.div>
+          <div role="group" aria-label="Explore my focus areas">
+            {nodes.map((node) => (
+              <div key={node.id} data-hero-node={node.id} className="absolute z-20 -translate-x-1/2 -translate-y-1/2" style={{ left: `${node.x}%`, top: `${node.y}%` }}>
+                <button
+                  type="button"
+                  aria-pressed={selectedId === node.id}
+                  aria-controls="hero-focus-description"
+                  onClick={() => setSelectedId(node.id)}
+                  onPointerEnter={(event) => { if (event.pointerType === "mouse") setHoveredId(node.id); }}
+                  onPointerLeave={() => setHoveredId(null)}
+                  onFocus={() => setFocusedId(node.id)}
+                  onBlur={() => setFocusedId(null)}
+                  className={`flex min-h-11 items-center gap-2 whitespace-nowrap rounded-full border bg-[#080c20] px-3 text-[10px] font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current sm:px-4 sm:text-xs ${node.accent} ${highlightedId === node.id ? node.selected : "border-white/10 hover:border-white/25"}`}
+                >
+                  <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-current" />
+                  {node.label}
+                </button>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+
+      <div id="hero-focus-description" className="mx-auto mt-4 grid max-w-sm px-3 text-center">
+        {nodes.map((node) => (
+          <p key={node.id} aria-hidden={selectedId !== node.id} className={`col-start-1 row-start-1 text-sm leading-6 text-white/55 motion-safe:transition-opacity motion-safe:duration-200 ${selectedId === node.id ? "opacity-100" : "opacity-0"}`}>
+            <span className={node.accent}>{node.label}.</span> {node.description}
+          </p>
         ))}
-      </motion.div>
+      </div>
+      <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {nodes.find((node) => node.id === selectedId)?.description}
+      </p>
+      {allowMotion ? (
+        <div className="mt-3 flex justify-center">
+          <button type="button" aria-pressed={paused} onClick={() => setPaused((current) => !current)} className="inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-[11px] text-white/40 transition-colors hover:text-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">
+            {paused ? <Play aria-hidden="true" className="h-3 w-3" /> : <Pause aria-hidden="true" className="h-3 w-3" />}
+            {paused ? "Resume motion" : "Pause motion"}
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

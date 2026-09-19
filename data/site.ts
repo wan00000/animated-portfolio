@@ -7,7 +7,7 @@ export const siteProfile: SiteProfile = {
   currentEmployer: "Infineon Technologies Malaysia",
   currentEmployerLogo: "/infineon1.png",
   roleDescription:
-    "Supporting reliable enterprise hybrid-cloud integration platforms across SAP and non-SAP environments, with a focus on monitoring, troubleshooting, deployment and service continuity.",
+    "Connecting enterprise systems and supporting reliable cloud integrations.",
   focusAreas: [
     "Enterprise Integration",
     "Cloud Operations",

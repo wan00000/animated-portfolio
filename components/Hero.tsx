@@ -1,138 +1,58 @@
-"use client";
-
 import Image from "next/image";
-import { ArrowDownRight, Github } from "lucide-react";
-import { useRef } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-} from "motion/react";
+import { ArrowUpRight, Github } from "lucide-react";
 
 import HeroIntegrationMap from "@/components/hero/HeroIntegrationMap";
-import { LampContainer } from "@/components/ui/lamp-effect";
 import { siteProfile } from "@/data/site";
-import { useMediaQuery } from "@/hooks/use-media-query";
-import {
-  heroContainerVariants,
-  heroItemVariants,
-  motionTokens,
-} from "@/lib/motion";
 
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
-  const showLamp = useMediaQuery("(min-width: 768px)");
-  const reduceMotion = useMediaQuery("(prefers-reduced-motion: reduce)");
-  const enableScrollEffects = useMediaQuery(
-    "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
-  );
   const [firstName, ...remainingName] = siteProfile.displayName.split(" ");
   const surname = remainingName.join(" ");
 
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const mapY = useTransform(scrollYProgress, [0, 1], [0, 70]);
-  const mapOpacity = useTransform(
-    scrollYProgress,
-    [0, 0.75, 1],
-    [1, 0.9, 0.35],
-  );
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, -35]);
-
   return (
     <section
-      ref={heroRef}
       id="home"
       aria-labelledby="hero-title"
-      className="relative isolate flex scroll-mt-24 items-center overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-28 lg:min-h-[100svh] lg:px-8 lg:py-28"
+      className="relative isolate flex scroll-mt-24 items-center overflow-hidden px-4 pb-16 pt-24 sm:px-6 sm:pb-20 sm:pt-32 lg:min-h-[90svh] lg:px-8 lg:py-32"
     >
-      {showLamp ? (
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[56vh] overflow-hidden opacity-65">
-          <LampContainer className="min-h-[54vh] bg-portfolio-bg" />
-        </div>
-      ) : (
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-[45vh] bg-gradient-to-b from-cyan-500/10 via-[#04071d] to-transparent" />
-      )}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(ellipse_at_65%_45%,black,transparent_70%)]" />
 
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_78%_32%,rgba(167,139,250,0.09),transparent_28%),radial-gradient(circle_at_14%_72%,rgba(251,113,133,0.06),transparent_25%)]" />
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:72px_72px] [mask-image:radial-gradient(circle_at_center,black,transparent_78%)]" />
-      <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-[47%] -z-0 -translate-x-1/2 -translate-y-1/2 whitespace-nowrap text-[26vw] font-black tracking-[-0.08em] text-white/[0.018]">
-        HUSAINY
-      </div>
-
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 sm:gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:grid-rows-[auto_1fr] lg:gap-x-10 lg:gap-y-0 xl:gap-x-16">
-        <motion.div
-          variants={heroContainerVariants}
-          initial={reduceMotion ? false : "hidden"}
-          animate="visible"
-          style={enableScrollEffects ? { y: contentY } : undefined}
-          className="order-1 flex flex-col items-center text-center lg:col-start-1 lg:row-start-1 lg:items-start lg:text-left"
-        >
-          <motion.div variants={heroItemVariants} className="mb-4 inline-flex items-center gap-3 rounded-full border border-cyan-300/15 bg-cyan-300/[0.05] px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-100/80 sm:mb-5 sm:text-xs">
-            <span aria-hidden="true" className="h-2 w-2 rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.85)]" />
-            Currently at {siteProfile.currentEmployer}
-          </motion.div>
-
-          <motion.h1 id="hero-title" aria-label={siteProfile.displayName} variants={heroItemVariants} className="text-balance text-[clamp(3rem,14vw,3.5rem)] font-bold leading-[0.9] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl xl:text-8xl">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 sm:gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-8 xl:gap-16">
+        <div className="flex min-w-0 flex-col items-center text-center lg:items-start lg:text-left">
+          <h1 id="hero-title" aria-label={siteProfile.displayName} className="hero-intro-reveal text-[clamp(3rem,14vw,3.5rem)] font-bold leading-[0.95] tracking-[-0.055em] text-white sm:text-7xl xl:text-8xl">
             <span className="block">{firstName}</span>
             <span className="portfolio-gradient-text block">{surname}</span>
-          </motion.h1>
+          </h1>
 
-          <motion.div variants={heroItemVariants} className="mt-5 sm:mt-7">
-            <p className="text-xl font-semibold text-white sm:text-2xl lg:text-3xl">{siteProfile.currentRole}</p>
-            <div className="mt-3 flex items-center justify-center gap-3 text-sm text-white/55 sm:text-base lg:justify-start">
+          <div className="hero-intro-reveal mt-6 sm:mt-8" style={{ animationDelay: "80ms" }}>
+            <p className="text-xl font-semibold tracking-tight text-white/90 sm:text-2xl xl:text-3xl">{siteProfile.currentRole}</p>
+            <div className="mt-3 flex items-center justify-center gap-2.5 text-xs text-white/55 sm:text-sm lg:justify-start">
               {siteProfile.currentEmployerLogo ? (
-                <span className="relative h-7 w-7 overflow-hidden rounded-md bg-white">
+                <span className="relative h-7 w-7 shrink-0 overflow-hidden rounded-md bg-white">
                   <Image src={siteProfile.currentEmployerLogo} alt="" fill sizes="28px" className="object-contain p-0.5" />
                 </span>
               ) : null}
               <span>{siteProfile.currentEmployer}</span>
             </div>
-          </motion.div>
+          </div>
 
-        </motion.div>
-
-        <motion.div
-          initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: motionTokens.duration.heroReveal,
-            delay: motionTokens.delay.heroMap,
-            ease: motionTokens.easing.standard,
-          }}
-          style={enableScrollEffects ? { y: mapY, opacity: mapOpacity } : undefined}
-          className="order-2 lg:col-start-2 lg:row-span-2 lg:row-start-1"
-        >
-          <HeroIntegrationMap />
-        </motion.div>
-
-        <motion.div
-          variants={heroContainerVariants}
-          initial={reduceMotion ? false : "hidden"}
-          animate="visible"
-          style={enableScrollEffects ? { y: contentY } : undefined}
-          className="order-3 flex flex-col items-center text-center lg:col-start-1 lg:row-start-2 lg:items-start lg:text-left"
-        >
-          <motion.p variants={heroItemVariants} className="max-w-2xl text-pretty text-base leading-7 text-white/65 sm:text-lg sm:leading-8">
+          <p className="hero-intro-reveal mt-6 max-w-md text-pretty text-base leading-7 text-white/60 sm:text-lg sm:leading-8" style={{ animationDelay: "160ms" }}>
             {siteProfile.roleDescription}
-          </motion.p>
+          </p>
 
-          <motion.div variants={heroItemVariants} className="mt-7 flex w-full flex-row gap-3 max-[359px]:flex-col sm:w-auto lg:mt-8">
-            <a href="#experience" className="group inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl border border-cyan-300/30 bg-cyan-300/10 px-4 text-sm font-semibold text-cyan-50 shadow-[0_0_30px_rgba(34,211,238,0.08)] transition duration-200 hover:-translate-y-0.5 hover:border-cyan-300/50 hover:bg-cyan-300/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:flex-none sm:px-5">
-              View my experience
-              <ArrowDownRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
+          <div className="hero-intro-reveal mt-8 flex w-full flex-wrap items-center justify-center gap-3 sm:w-auto lg:justify-start" style={{ animationDelay: "240ms" }}>
+            <a href="#work" className="group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-cyan-200/30 bg-cyan-300/10 px-5 text-sm font-semibold text-cyan-50 transition-colors hover:border-cyan-200/60 hover:bg-cyan-300/15 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-300 motion-safe:transition-[color,background-color,border-color,transform] motion-safe:hover:-translate-y-0.5">
+              Explore my work <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
             </a>
-            <a href={siteProfile.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="Open Izwan Husainy's GitHub profile in a new tab" className="group inline-flex min-h-12 flex-1 items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-4 text-sm font-semibold text-white transition duration-200 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white sm:flex-none sm:px-5">
-              <Github className="h-4 w-4" />
-              Explore GitHub
+            <a href={siteProfile.githubUrl} target="_blank" rel="noopener noreferrer" aria-label="View Izwan Husainy's GitHub profile (opens in a new tab)" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-transparent px-5 text-sm font-medium text-white/65 transition-colors hover:border-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white motion-safe:transition-[color,border-color,transform] motion-safe:hover:-translate-y-0.5">
+              <Github aria-hidden="true" className="h-4 w-4" /> GitHub
             </a>
-          </motion.div>
+          </div>
+        </div>
 
-        </motion.div>
+        <div className="min-w-0">
+          <HeroIntegrationMap />
+        </div>
       </div>
-
     </section>
   );
 }
