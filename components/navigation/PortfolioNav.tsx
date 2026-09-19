@@ -10,7 +10,7 @@ const iconMap = {
   Home,
   Experience: BriefcaseBusiness,
   Capabilities: Wrench,
-  Recognition: Award,
+  Credentials: Award,
   Work: Layers3,
   Background: UserRound,
 };

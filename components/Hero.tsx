@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, ArrowDownRight, Github } from "lucide-react";
+import { ArrowDownRight, Github } from "lucide-react";
 import { useRef } from "react";
 import {
   motion,
@@ -130,23 +130,9 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          <motion.ul variants={heroItemVariants} aria-label="Current focus areas" className="mt-7 flex flex-wrap justify-center gap-x-4 gap-y-2 lg:mt-9 lg:justify-start">
-            {siteProfile.focusAreas.map((area) => (
-              <li key={area} className="text-[10px] font-medium uppercase tracking-[0.18em] text-white/40 sm:text-xs">{area}</li>
-            ))}
-          </motion.ul>
         </motion.div>
       </div>
 
-      {!reduceMotion ? (
-        <motion.div aria-hidden="true" className="absolute bottom-0 left-1/2 h-24 w-px -translate-x-1/2 origin-top bg-gradient-to-b from-cyan-300/70 to-transparent" style={{ scaleY: scrollYProgress }} />
-      ) : (
-        <div aria-hidden="true" className="absolute bottom-0 left-1/2 h-12 w-px -translate-x-1/2 bg-gradient-to-b from-cyan-300/40 to-transparent" />
-      )}
-
-      <a href="#experience" aria-label="Scroll to experience" className="absolute bottom-5 left-1/2 z-20 hidden min-h-11 -translate-x-1/2 items-center gap-2 rounded-full px-3 text-[10px] font-semibold uppercase tracking-[0.2em] text-white/35 transition hover:text-white/70 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 lg:flex">
-        Experience <ArrowDown className="h-3.5 w-3.5" />
-      </a>
     </section>
   );
 }

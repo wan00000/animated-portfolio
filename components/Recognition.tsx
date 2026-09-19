@@ -4,48 +4,106 @@ import { useState } from "react";
 import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 
-import { achievements, certifications } from "@/data/recognition";
-import { Reveal } from "@/components/shared/Reveal";
+import { certifications } from "@/data/recognition";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { SectionShell } from "@/components/shared/SectionShell";
 
+const certificationId = 1;
+const shortLabels: Record<number, string> = {
+  1: "Cloud Practitioner",
+  2: "Internet of Things",
+  3: "Storage",
+  4: "Compute",
+  5: "Networking",
+  6: "Databases",
+  7: "Security",
+  8: "Serverless",
+  9: "Cloud 101",
+};
+const credentialGroups = [
+  { id: "certification", title: "Certification", items: certifications.filter((item) => item.id === certificationId) },
+  { id: "learning", title: "Learning badges", items: certifications.filter((item) => item.id !== certificationId) },
+];
+
 export default function Recognition() {
-  const [showAll, setShowAll] = useState(false);
-  const visibleCertifications = showAll ? certifications : certifications.filter((item) => item.featured).slice(0, 3);
+  const [selectedId, setSelectedId] = useState(
+    certifications.find((item) => item.id === certificationId)?.id ?? certifications[0]?.id,
+  );
+  const selectedCredential = certifications.find((item) => item.id === selectedId);
 
   return (
     <SectionShell id="recognition">
-      <SectionHeading eyebrow="Recognition" title="Selected recognition and professional credentials" description="Verified credentials that support the work shown throughout the portfolio." />
-      {achievements.length > 0 ? (
-        <div className="mb-12 grid gap-5 md:grid-cols-2">
-          {achievements.map((achievement) => (
-            <article key={achievement.id} className="rounded-2xl border border-white/[0.08] bg-portfolio-surface p-6">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-400">{achievement.year || "Recognition"}</p>
-              <h3 className="mt-3 text-xl font-semibold text-white">{achievement.title}</h3>
-              {achievement.organization ? <p className="mt-2 text-sm text-white/50">{achievement.organization}</p> : null}
-              {achievement.description ? <p className="mt-4 text-sm leading-7 text-white/65">{achievement.description}</p> : null}
-            </article>
+      <SectionHeading eyebrow="Credentials" title="Certifications & learning." />
+      <div className="grid items-start gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
+        <div id="credential-spotlight" className="relative grid min-w-0 overflow-hidden rounded-2xl border border-white/[0.1] bg-portfolio-surface">
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_20%_0%,rgba(34,211,238,0.09),transparent_65%),radial-gradient(ellipse_at_100%_80%,rgba(167,139,250,0.08),transparent_60%)]" />
+          {certifications.map((credential) => {
+            const selected = credential.id === selectedId;
+            return (
+              <article
+                key={credential.id}
+                aria-labelledby={`credential-title-${credential.id}`}
+                aria-hidden={!selected}
+                inert={!selected}
+                className={`col-start-1 row-start-1 flex min-w-0 flex-col items-center p-6 text-center motion-safe:transition-opacity motion-safe:duration-200 sm:p-8 ${selected ? "relative z-10 opacity-100" : "pointer-events-none opacity-0"}`}
+              >
+                <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-cyan-200/80">
+                  {credential.id === certificationId ? "Certification" : "Learning badge"}
+                </p>
+                <Image src={credential.image} alt="" width={208} height={208} sizes="(max-width: 639px) 176px, 208px" className="mt-6 h-44 w-44 object-contain sm:h-52 sm:w-52" />
+                <h3 id={`credential-title-${credential.id}`} className="mt-7 max-w-sm text-balance text-xl font-semibold leading-snug tracking-tight text-white sm:text-2xl">{credential.title}</h3>
+                <p className="mt-3 max-w-xs text-sm leading-6 text-white/60">{credential.issuer}</p>
+                <p className="mt-2 text-xs text-white/45">Issued {credential.issueDate}</p>
+                <div className="mt-auto pt-6">
+                  <a
+                    href={credential.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`View ${credential.title} on Credly (opens in a new tab)`}
+                    className="inline-flex min-h-11 items-center gap-2 rounded-md px-3 text-sm font-medium text-cyan-200 transition-colors hover:text-cyan-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300"
+                  >
+                    View on Credly <ExternalLink aria-hidden="true" className="h-3.5 w-3.5" />
+                  </a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+
+        <div className="min-w-0 space-y-7">
+          {credentialGroups.filter((group) => group.items.length > 0).map((group) => (
+            <div key={group.id}>
+              <div className="mb-4 flex items-center gap-4">
+                <h3 id={`credential-group-${group.id}`} className="shrink-0 text-xs font-medium uppercase tracking-[0.18em] text-white/55">{group.title}</h3>
+                <div aria-hidden="true" className="h-px flex-1 bg-white/[0.08]" />
+              </div>
+              <ul aria-labelledby={`credential-group-${group.id}`} className="grid grid-cols-3 gap-2 sm:gap-3">
+                {group.items.map((credential) => {
+                  const selected = credential.id === selectedId;
+                  return (
+                    <li key={credential.id}>
+                      <button
+                        type="button"
+                        aria-pressed={selected}
+                        aria-controls="credential-spotlight"
+                        aria-label={`Preview ${credential.title}`}
+                        onClick={() => setSelectedId(credential.id)}
+                        className={`group flex h-full w-full flex-col items-center gap-3 rounded-xl border px-1.5 py-4 text-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300 sm:px-3 ${selected ? "border-cyan-200/40 bg-cyan-300/[0.07]" : "border-transparent hover:border-white/10 hover:bg-white/[0.025]"}`}
+                      >
+                        <Image src={credential.image} alt="" width={88} height={88} sizes="(max-width: 639px) 64px, 88px" className="h-16 w-16 object-contain motion-safe:transition-transform motion-safe:duration-200 motion-safe:group-hover:-translate-y-0.5 sm:h-[88px] sm:w-[88px]" />
+                        <span className={`text-xs leading-5 ${selected ? "font-medium text-cyan-100" : "text-white/65 group-hover:text-white"}`}>{shortLabels[credential.id] ?? credential.title}</span>
+                      </button>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
           ))}
         </div>
-      ) : null}
-      <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {visibleCertifications.map((certification, index) => (
-          <Reveal key={certification.id} delay={index * 0.04} className="h-full">
-            <article className="flex h-full flex-col rounded-2xl border border-white/[0.08] bg-portfolio-surface p-6">
-              <div className="relative h-20 w-20 overflow-hidden rounded-xl bg-white"><Image src={certification.image} alt="" fill sizes="80px" className="object-contain p-2" /></div>
-              <h3 className="mt-5 text-lg font-semibold text-white">{certification.title}</h3>
-              <p className="mt-2 text-sm text-white/50">{certification.issuer}</p>
-              <p className="mt-1 text-xs text-white/35">Issued {certification.issueDate}</p>
-              <a href={certification.link} target="_blank" rel="noopener noreferrer" className="mt-auto inline-flex min-h-11 items-end gap-2 pt-6 text-sm font-medium text-cyan-300 hover:text-cyan-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-300">Verify credential <ExternalLink className="mb-0.5 h-4 w-4" /></a>
-            </article>
-          </Reveal>
-        ))}
       </div>
-      {certifications.length > 3 ? (
-        <button type="button" onClick={() => setShowAll((current) => !current)} className="mt-8 min-h-11 rounded-full border border-white/10 bg-white/[0.04] px-5 text-sm font-medium text-white transition hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
-          {showAll ? "Show featured credentials" : "View all credentials"}
-        </button>
-      ) : null}
+      <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {selectedCredential ? `Selected credential: ${selectedCredential.title}, issued ${selectedCredential.issueDate}.` : ""}
+      </p>
     </SectionShell>
   );
 }

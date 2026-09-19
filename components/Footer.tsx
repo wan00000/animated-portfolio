@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowUp } from "lucide-react";
 
 import { siteProfile, socialMedia } from "@/data/site";
 
@@ -18,7 +17,6 @@ export default function Footer() {
               <Image src={item.img} alt="" width={18} height={18} className="h-[18px] w-[18px]" />{item.name}
             </a>
           ))}
-          <a href="#home" className="flex min-h-11 items-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-4 text-sm text-white/65 transition hover:border-white/[0.15] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Back to top <ArrowUp className="h-4 w-4" /></a>
         </div>
       </div>
     </footer>

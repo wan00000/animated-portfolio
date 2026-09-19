@@ -173,7 +173,17 @@
     @apply font-bold text-4xl md:text-5xl text-center;
   }
   .portfolio-gradient-text {
-    @apply bg-gradient-to-r from-cyan-400 via-violet-400 to-rose-400 bg-clip-text text-transparent;
+    background: linear-gradient(
+      110deg,
+      #a5f3fc 0%,
+      #93c5fd 35%,
+      #a5b4fc 65%,
+      #c4b5fd 100%
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
   }
   .portfolio-card {
     @apply rounded-[var(--radius-portfolio-card)] border border-white/[0.08] bg-portfolio-surface;
