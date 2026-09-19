@@ -135,8 +135,8 @@ export default function Experience() {
                     onClick={() => setExpandedId((current) => current === item.id ? null : item.id)}
                     className="group flex w-full items-start gap-3 rounded-lg px-3 py-7 text-left transition-colors hover:bg-white/[0.025] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current sm:items-center sm:gap-5 sm:px-6"
                   >
-                    <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-white sm:h-14 sm:w-14">
-                      <Image src={item.logo} alt="" fill sizes="(max-width: 639px) 44px, 56px" className="object-contain p-1" />
+                    <span className="relative h-11 w-11 shrink-0 overflow-hidden rounded-xl bg-white ring-1 ring-white/10 sm:h-14 sm:w-14">
+                      <Image src={item.logo} alt="" fill sizes="(max-width: 639px) 44px, 56px" className="rounded-[inherit] object-cover" />
                     </span>
                     <span className="min-w-0 flex-1">
                       <span className="flex flex-wrap items-center gap-x-3 gap-y-2">
